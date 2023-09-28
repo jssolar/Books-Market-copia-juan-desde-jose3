@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       message: null,
       //USUARIO QUE INICIO SESIÓN
-      currentUser: null,
+      currentUser: 1,
       //VARIABLE PARA PUBLICAR EL NUEVO LIBRO
       newBook: {
         id: "",
@@ -38,6 +38,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       showBook: [],
       //VARIABLE PARA GUARDAR DETALLE DE UN LIBRO
       oneBook: [],
+      //Variable LIBROS DONADOS
+      donatedBook: [],
     },
 
     actions: {
@@ -203,6 +205,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.removeItem("currentUser");
         }
       },
+      // FUNCION PARA OBTENER LOS LIBROS DONADOS
+      getLibrosDonados: () => {
+        fetch(getStore().url+"/api/libros_donados")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          setStore({donatedBook: data.libros})
+        })
+        .catch(error => console.log('error', error));
+      }
+
     },
   };
 };

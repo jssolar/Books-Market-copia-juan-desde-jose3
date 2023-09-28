@@ -22,6 +22,7 @@ export const MetodoPago = () => {
                 <h6>4.- Efectivo</h6>
                 <h6>5.- BitCoins</h6>
             </div>
-        </div >
+        </div>
+        
     );
 };

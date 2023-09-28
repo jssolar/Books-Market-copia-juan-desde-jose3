@@ -129,8 +129,8 @@ export const Navbar = () => {
               </Link>
             </div>
             <div className="">
-              <Link to="/donacionesRalizadas" className="nav-link active text-white" aria-current="page">
-                Donaciones realizadas
+              <Link to="/donacionesRealizadas" className="nav-link active text-white" aria-current="page">
+                Recibe tu Libro
               </Link>
             </div>
           </div>

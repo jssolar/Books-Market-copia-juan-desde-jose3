@@ -297,3 +297,12 @@ def get_book_details(id):
     except Exception as e:
         # Maneja cualquier excepción que pueda ocurrir (por ejemplo, problemas de base de datos) y devuelve un error 500
         return jsonify({'error': str(e)}), 500
+
+
+#obtener libro donados
+@api.route('/libros_donados')
+def libros_donados(): 
+    libros = Book.query.filter_by(type='3').all()
+    libros_donados = list(map(lambda l:l.serialize(),libros))
+    return jsonify({'libros': libros_donados}), 200
+

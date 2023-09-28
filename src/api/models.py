@@ -49,6 +49,8 @@ class Book(db.Model):
     type = db.Column(db.String(120), nullable=False)
     price = db.Column(db.String(120), nullable=False)    
     photo = db.Column(db.String(120), default="no-photo.png")
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    usuario = db.relationship('User')
 
     def serialize(self):
         return {
@@ -60,7 +62,8 @@ class Book(db.Model):
             "description": self.description,
             "type": self.type,
             "price": self.price,
-            "photo": self.photo
+            "photo": self.photo,
+            "usuario": self.usuario.serialize()
         }
 
     def save(self):

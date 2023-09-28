@@ -12,6 +12,7 @@ import { LibroVenta } from "./pages/libroVenta";
 import { MasVendidos } from "./pages/masVendidos";
 import { LibrosIntercambio } from "./pages/librosIntercambio";
 import { DonacionesRealizadas } from "./pages/donacionesRalizadas";
+import { InfoDonante } from "./component/infodonante";
 import Card from "./component/reviewsLibros/Card";
 import Testimonio from "./component/reviewsLibros/Testimonio";
 import BookReviews from "./pages/BookReviews";
@@ -21,6 +22,7 @@ import FormularioRegistro from "./pages/formularioRegistro";
 import RegistroLibro from "./pages/registroLibro";
 import { Profile } from "./pages/profile";
 import { DetalleLibro } from "./pages/detalleLibro";
+import { ConfirmacionEnvio } from "./pages/confirmacionEnvio"
 
 
 
@@ -34,6 +36,7 @@ import { ComoDonar } from "./pages/comoDonar";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { ConfirmacionDonacion } from "./component/confirmacionDonacion";
 
 
 
@@ -61,7 +64,8 @@ const Layout = () => {
                         <Route element={<MetodoEnvio />} path="/metodoEnvio" />
                         <Route element={<SobreNosotros />} path="/sobreNosotros" />
                         <Route element={<NuestraHistoria />} path="/nuestraHistoria" />
-                        <Route element={<DonacionesRealizadas />} path="/donacionesRalizadas" />
+                        <Route element={<DonacionesRealizadas />} path="/donacionesRealizadas" />
+                        <Route element={<InfoDonante />} path="/infoDonante/:index" />
                         <Route element={<ComoDonar />} path="/comoDonar" />
                         <Route element={<BookReviews />} path="/bookreviews" />
                         <Route element={<Login />} path="/login" />
@@ -71,7 +75,9 @@ const Layout = () => {
                         <Route element={<FormularioRegistro />} path="/formularioRegistro" />
                         <Route element={<RegistroLibro />} path="/registroLibro" />
                         <Route element={<DetalleLibro />} path="/detalleLibro/:id" />
-                        <Route element={<Profile />} path="/profile" />                         
+                        <Route element={<Profile />} path="/profile" />
+                        <Route element={<ConfirmacionDonacion />} path="/confirmacionDonacion" />                         
+                        <Route element={<ConfirmacionEnvio />} path="/confirmacionEnvio" />                         
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

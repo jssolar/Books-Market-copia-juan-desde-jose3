@@ -15,7 +15,14 @@ export const Profile = () => {
 
                 <div className="text-center m-3 mt-5 mb-5">
                     <h1>Perfil usuario</h1>
+                    <Link to="/confirmacionDonacion">
+              <a href="" className="btn btn-dark">Confirmar si recibiste la donacion</a>
+              </Link>
+                    <Link to="/confirmacionEnvio">
+              <a href="" className="btn btn-dark m-2">Confirmar envio</a>
+              </Link>
                 </div>
+                
                 
                 
             </div>
