@@ -5,10 +5,14 @@ import { BackendURL } from "./component/backendURL";
 
 
 import { Home } from "./pages/home";
-
+/* REGISTROS */
+import Login from "./component/login/Login";
+import Register from "./pages/register";
+import RegisterBook from "./pages/registerBook";
 
 /* CATEGORIAS */
-import { LibroVenta } from "./pages/libroVenta";
+import { AllBooks } from "./pages/allBooks";
+import { BookDetails } from "./pages/bookDetails";
 import { MasVendidos } from "./pages/masVendidos";
 import { LibrosIntercambio } from "./pages/librosIntercambio";
 import { DonacionesRealizadas } from "./pages/donacionesRalizadas";
@@ -16,12 +20,15 @@ import { InfoDonante } from "./component/infodonante";
 import Card from "./component/reviewsLibros/Card";
 import Testimonio from "./component/reviewsLibros/Testimonio";
 import BookReviews from "./pages/BookReviews";
-import Login from "./component/login/Login";
+
 import Intercambio from "./pages/Intercambio";
-import FormularioRegistro from "./pages/formularioRegistro";
-import RegistroLibro from "./pages/registroLibro";
+
+import PurchasedBooks from "./pages/purchasedBooks";
+
+
 import { Profile } from "./pages/profile";
-import { DetalleLibro } from "./pages/detalleLibro";
+
+import Enviar_formulario from "./pages/enviar_formulario";
 import { ConfirmacionEnvio } from "./pages/confirmacionEnvio"
 
 
@@ -56,7 +63,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<LibroVenta />} path="/libroVenta" />
+                        <Route element={<AllBooks />} path="/allBooks" />
+                        <Route element={<BookDetails />} path="/allBooks/bookDetails/:id" />
                         <Route element={<MasVendidos />} path="/masVendidos" />
                         <Route element={<LibrosIntercambio />} path="/librosIntercambio" />
                         <Route element={<GuiaCompra />} path="/guiaCompra" />
@@ -78,6 +86,11 @@ const Layout = () => {
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<ConfirmacionDonacion />} path="/confirmacionDonacion" />                         
                         <Route element={<ConfirmacionEnvio />} path="/confirmacionEnvio" />                         
+                        <Route element={<Intercambio />} path="/intercambio" /> 
+                        <Route element={<Register />} path="/register" />                        
+                        <Route element={<RegisterBook />} path="/registerBook" />
+                        <Route element={<PurchasedBooks />} path="/purchasedBooks" />
+                        <Route element={<Enviar_formulario />} path="/enviar_formulario" />                         
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
@@ -88,3 +101,5 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
+
+
