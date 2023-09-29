@@ -489,7 +489,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// FUNCION PARA OBTENER LOS LIBROS DONADOS
-			getLibrosDonados: () => {
+			listaLibrosDonados: () => {
 				fetch(getStore().url + "/api/libros_donados")
 					.then(response => response.json())
 					.then(data => {

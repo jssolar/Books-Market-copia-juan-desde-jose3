@@ -88,7 +88,7 @@ const Layout = () => {
                         <Route element={<Enviar_formulario />} path="/enviar_formulario" />                         
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
+                    {/* <Footer /> */}
                 </ScrollToTop>
             </BrowserRouter>
         </div>

@@ -20,17 +20,17 @@ export const ConfirmacionEnvio = () => {
                     Se ha realizado la donacion
                 </div>
             }
-            <div class="card mt-5">
-                <div class="card-body">
-                    <h5 class="card-title">Envio de Donación</h5>
+            <div className="card mt-5">
+                <div className="card-body">
+                    <h5 className="card-title">Envio de Donación</h5>
                     <div className="mb-3 mx-auto p-2">
-                        <label for="exampleFormControlInput1" className="form-label">Email</label>
+                        <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="email de usuario registrado" name="email" value={store.envio.email} onChange={actions.changeEnvio}/>
                     </div>
                     <div className="mb-3 mx-auto p-2">
                         <label htmlFor="">Selecciona el libro</label>
-                        <select class="form-select" aria-label="Default select example" name="libro" value={store.envio.libro} onChange={actions.changeEnvio}>
-                            <option selected>Selecciona tu libro</option>
+                        <select className="form-select" aria-label="Default select example" name="libro" value={store.envio.libro} onChange={actions.changeEnvio}>
+                            <option defaultValue>Selecciona tu libro</option>
                             {
                                 store.librosDonadosUsuario?.map(libro=>{
                                     return(
@@ -42,9 +42,9 @@ export const ConfirmacionEnvio = () => {
 
                     </div>
                     <div className="mb-3 mx-auto p-2">
-                        <label for="exampleFormControlTextarea1" className="form-label">Comentario</label>
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Comentario</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={store.envio.comentario} name="comentario" onChange={actions.changeEnvio}></textarea>
-                        <button type="button" class="btn btn-dark mt-2" onClick={actions.confirmarEnvioDonacion}>Confirmar</button>
+                        <button type="button" className="btn btn-dark mt-2" onClick={actions.confirmarEnvioDonacion}>Confirmar</button>
                     </div>
                 </div>
             </div>
