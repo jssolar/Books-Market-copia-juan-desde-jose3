@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Gallery, Comentario, Book,  Mensaje
+from api.models import db, User, Gallery, Comentario, Book,  Mensaje, Donacion
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,7 +12,6 @@ from cloudinary.uploader import upload
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import cloudinary
-from flask_mail import Mail, Message
 
 
 
@@ -422,4 +421,47 @@ def libros_donados():
     libros = Book.query.filter_by(type='3').all()
     libros_donados = list(map(lambda l:l.serialize(),libros))
     return jsonify({'libros': libros_donados}), 200
+
+#Obtener libros por usuario
+@api.route('/libros_donados_usuario/<int:user_id>')
+def get_books_user(user_id):
+    libros =  Book.query.filter_by(user_id = user_id).all()
+    result =  list(map(lambda libro: libro.serialize(), libros))
+    return jsonify(result)
+
+@api.route('confirmar_donacion', methods=['POST'])
+def confirmar_donacion():
+    data =  request.get_json()
+    print(data)
+    usuario =  User.query.filter_by(email = data['email']).first()
+    donacion =  Donacion()
+    donacion.comentario_donante = data['comentario']
+    donacion.donante_id = data['currentUserId']
+    donacion.receptor_id =  usuario.id
+    donacion.book_id = data['libro']
+    donacion.save()
+
+    libro =  Book.query.get(data['libro'])
+    libro.user_id =  usuario.id
+    libro.save()
+
+    return jsonify({"msg":"Guardado con exito"})
+
+@api.route('get_libros_donados/<int:user_id>')
+def get_libros_donados(user_id):
+    donaciones = Donacion.query.filter(Donacion.receptor_id == user_id, db.or_(Donacion.confirmacion == None ,Donacion.confirmacion==False)).all()
+    lista_donaciones = list(map(lambda donacion: donacion.serialize(), donaciones))
+    return jsonify(lista_donaciones)
+
+@api.route('confirmar_donacion_receptor', methods=['POST'])
+def confirmar_donacion_receptor	():
+    data =  request.get_json()
+    print(data)
+    donacion =  Donacion.query.filter_by(id = data['id']).first()
+    donacion.confirmacion = True
+    donacion.comentario_receptor = data['comentario']
+    donacion.update()
+
+    return jsonify({"mensaje":"guardado"})
+
 

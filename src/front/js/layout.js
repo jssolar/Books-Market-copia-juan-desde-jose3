@@ -77,12 +77,7 @@ const Layout = () => {
                         <Route element={<ComoDonar />} path="/comoDonar" />
                         <Route element={<BookReviews />} path="/bookreviews" />
                         <Route element={<Login />} path="/login" />
-                        <Route element={<Intercambio />} path="/intercambio" />
-                        <Route element={<FormularioRegistro />} path="/formularioRegistro" />
                         <Route element={<h1>Not found!</h1>} />
-                        <Route element={<FormularioRegistro />} path="/formularioRegistro" />
-                        <Route element={<RegistroLibro />} path="/registroLibro" />
-                        <Route element={<DetalleLibro />} path="/detalleLibro/:id" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<ConfirmacionDonacion />} path="/confirmacionDonacion" />                         
                         <Route element={<ConfirmacionEnvio />} path="/confirmacionEnvio" />                         

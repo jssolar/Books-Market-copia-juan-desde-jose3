@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
+
 import { Context } from "../store/appContext";
 import { Carta } from "../component/carta";
 
 export const DonacionesRealizadas = () => {
+    const estilodedonaciones = {
+        backgroundColor: 'rgba(146, 197, 211)',
+      };
     const { store, actions } = useContext(Context);
     useEffect(() => {
         actions.getLibrosDonados()
     }, []);
 
-    return (
+    return (<div style={estilodedonaciones}>
         <div className="container-fluid">
-            <div className="text-center text-dark m-3 mt-5 mb-5">
+            <div className="text-center text-dark">
                 <h1>Elige tu libro</h1>
             </div>
             <div className="row row-cols-3 g-4">
@@ -26,10 +30,7 @@ export const DonacionesRealizadas = () => {
                 img={donativos.photo}></Carta>
                 )}
             </div>
-            <div className="d-grid gap-2">
-                <button className="btn btn-dark" type="button">Realizar Donaciones</button>
-
-            </div>
+        </div>
         </div>
     );
 };

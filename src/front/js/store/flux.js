@@ -1,494 +1,605 @@
 const getState = ({ getStore, getActions, setStore }) => {
-  return {
-    store: {
-      //VARIABLES PARA GUARDAR EL INICIO DE SESIÓN
-      email: "",
-      password: "",
-      //VARIABLE PARA GUARDAR LOS USUARIOS QUE SE CREAN
-      users: [],
-      //SE GUARDA EL REGISTRO DE USUARIO
-      newUser: {
-        id: "",
-        name: "",
-        lastname: "",
-        email: "",
-        password: "",
-        rep_password: "",
-        region: "",
-      },
-      //URL DE LA API
-      url: "http://localhost:3001",
+	return {
+		store: {
+			//VARIABLES PARA GUARDAR EL INICIO DE SESIÓN
+			email: "",
+			password: "",
+			//VARIABLE PARA GUARDAR LOS USUARIOS QUE SE CREAN
+			users: [],
+			//SE GUARDA EL REGISTRO DE USUARIO
+			newUser: {
+				id: "",
+				name: "",
+				lastname: "",
+				email: "",
+				password: "",
+				rep_password: "",
+				region: "",
+			},
+			//URL DE LA API
+			url: "http://localhost:3001",
 
-      message: null,
-      //USUARIO QUE INICIO SESIÓN
-      currentUser: 1,
-      //VARIABLE PARA PUBLICAR EL NUEVO LIBRO
-      newBook: {
-        id: "",
-        title: "",
-        author: "",
-        cathegory: "",
-        number_of_pages: "",
-        description: "",
-        type: "",
-        price: "",
-        photo: "",
-      },
-      //ESTADO PARA GUARDAR LISTA DE LIBROS
-      showBooks: [],
-      //ESTADO PARA GUARDAR DETALLE DE UN LIBRO
-      oneBook: [],
-      //ESTADOS INPUT REGISTRO LIBRO CON FOTOS
-      title: [],
-      author: [],
-      cathegory: [],
-      number_of_pages: [],
-      description: [],
-      price: [],
-      photo: null,
-      type: [],
-      //ESTADOS INPUT REGISTRO USUARIO CON FOTOS
-      name: [],
-      lastname: [],
-      email: [],
-      password: [],
-      rep_password: [],
-      region: [],
-      city: [],
-      userImage: null,
-      // ESTADOS MENSAJE ENTRE USUARIOS
-      sender_id: [],
-      receiver_id: [],
-      book_id: [],
-      message_text: [],
-      ///CHAT ENTRE USUARIOS
-      buyChat: [],
-      ///TODOS LOS USUARIOS
-      allMessagesUser: [],
-      booksIdBuy: [],
-      ///LIBROS QUE COMPRASTE
-      myBooks:[],
-
-
-
-      //Variable LIBROS DONADOS
-      donatedBook: [],
-    },
-
-    actions: {
-      //PUBLICACIÓN DE LIBRO      
-      ////FUNC. GUARDAR VALOR INPUT
-      handleChangeBook: (e) => {
-        const { newBook } = getStore();
-        e.preventDefault();
-        newBook[e.target.name] = e.target.value;
-        setStore({ newBook });
-        console.log("newBook:", getStore().newBook);
-      },
-      ////FUNC. PARA GUARDAR LIBRO
-      saveBook: async (navigate) => {
-        try {
-          const { url, newBook, currentUser } = getStore();
-          const token = currentUser ? currentUser.access_token : '';
-          const response = await fetch(`${url}/api/registerBook`, {
-            method: "POST",
-            body: JSON.stringify(newBook),
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}`
-            },
-          });
-          const data = await response.json();
-          console.log("data", data);
-          navigate("/");
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      ////FUNC. ENVIAR REGISTRO
-      submitBook: (e, navigate) => {
-        e.preventDefault();
-        //agregar verificación de usuario 
-        getActions().saveBook(navigate);
-      },
-      ////FUNC LISTA DE LIBROS  
-      getLibros: () => {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
-
-        fetch("http://localhost:3001/api/libroVenta", requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            setStore({ showBooks: data });
-            console.log("conseguí los libros");
-            console.log("showBooks:", data);
-          })
-          .catch(error => console.log('error', error));
-      },
-
-      ////FUNC DETALLE UN LIBRO
-      getOneBook: (id) => {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
-
-        fetch(`http://localhost:3001/api/detalleLibro/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-
-
-            setStore({ oneBook: data });
-            console.log("tengo el libro");
-            console.log("oneBook:", data);
-          })
-          .catch(error => console.log('error', error));
-      },
+			message: null,
+			//USUARIO QUE INICIO SESIÓN
+			currentUser: null,
+			//VARIABLE PARA PUBLICAR EL NUEVO LIBRO
+			newBook: {
+				id: "",
+				title: "",
+				author: "",
+				cathegory: "",
+				number_of_pages: "",
+				description: "",
+				type: "",
+				price: "",
+				photo: "",
+			},
+			//ESTADO PARA GUARDAR LISTA DE LIBROS
+			showBooks: [],
+			//ESTADO PARA GUARDAR DETALLE DE UN LIBRO
+			oneBook: [],
+			//ESTADOS INPUT REGISTRO LIBRO CON FOTOS
+			title: [],
+			author: [],
+			cathegory: [],
+			number_of_pages: [],
+			description: [],
+			price: [],
+			photo: null,
+			type: [],
+			//ESTADOS INPUT REGISTRO USUARIO CON FOTOS
+			name: [],
+			lastname: [],
+			email: [],
+			password: [],
+			rep_password: [],
+			region: [],
+			city: [],
+			userImage: null,
+			// ESTADOS MENSAJE ENTRE USUARIOS
+			sender_id: [],
+			receiver_id: [],
+			book_id: [],
+			message_text: [],
+			///CHAT ENTRE USUARIOS
+			buyChat: [],
+			///TODOS LOS USUARIOS
+			allMessagesUser: [],
+			booksIdBuy: [],
+			///LIBROS QUE COMPRASTE
+			myBooks: [],
 
 
 
-      //---------< funcion para  registro  de usuario >----------------->
+			//Variable LIBROS DONADOS
+			donatedBook: [],
+			librosDonadosRecibidos: [],
+			librosDonadosUsuario: [],
+			envio: {
+				email: '',
+				libro: null,
+				comentario: '',
+				enviado: false
+			},
+			confirmacionDonacion:{
+				id:null,
+				comentario:null
+			}
+		},
 
-      handleChangeRegister: (e) => {
-        const { newUser } = getStore();
-        e.preventDefault();
-        newUser[e.target.name] = e.target.value;
-        setStore({ newUser });
-        console.log("newUser:", getStore().newUser);
-      },
+		actions: {
+			//PUBLICACIÓN DE LIBRO      
+			////FUNC. GUARDAR VALOR INPUT
+			handleChangeBook: (e) => {
+				const { newBook } = getStore();
+				e.preventDefault();
+				newBook[e.target.name] = e.target.value;
+				setStore({ newBook });
+				console.log("newBook:", getStore().newBook);
+			},
+			////FUNC. PARA GUARDAR LIBRO
+			saveBook: async (navigate) => {
+				try {
+					const { url, newBook, currentUser } = getStore();
+					const token = currentUser ? currentUser.access_token : '';
+					const response = await fetch(`${url}/api/registerBook`, {
+						method: "POST",
+						body: JSON.stringify(newBook),
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${token}`
+						},
+					});
+					const data = await response.json();
+					console.log("data", data);
+					navigate("/");
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			////FUNC. ENVIAR REGISTRO
+			submitBook: (e, navigate) => {
+				e.preventDefault();
+				//agregar verificación de usuario 
+				getActions().saveBook(navigate);
+			},
+			////FUNC LISTA DE LIBROS  
+			getLibros: () => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
 
-      submitRegister: (e, navigate) => {
-        e.preventDefault();
+				fetch("http://localhost:3001/api/libroVenta", requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ showBooks: data });
+						console.log("conseguí los libros");
+						console.log("showBooks:", data);
+					})
+					.catch(error => console.log('error', error));
+			},
 
-        if (getStore().newUser.password === getStore().newUser.rep_password) {
-          getActions().saveUser(navigate);
-        } else {
-          alert("las contraseñas no coinciden");
-        }
-      },
+			////FUNC DETALLE UN LIBRO
+			getOneBook: (id) => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
 
-      saveUser: async (navigate) => {
-        try {
-          const { url, newUser } = getStore();
-          const response = await fetch(`${url}/api/register`, {
-            method: "POST",
-            body: JSON.stringify(newUser),
-            headers: { "Content-Type": "application/json" },
-          });
-          const data = await response.json();
-          console.log("data", data);
-          navigate("/login");
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      //----------< Login usuario >---------------------------------------------->
+				fetch(`http://localhost:3001/api/detalleLibro/${id}`, requestOptions)
+					.then(response => response.json())
+					.then(data => {
 
 
-      //---- funcion para  login  de usuario------------------------------------------->
-      handleSubmitLogin: async (e, navigate) => {
-        e.preventDefault();
-        try {
-          const { url, email, password, currentUser } = getStore();
-          let info = { email, password, currentUser };
-          const response = await fetch(`${url}/api/login`, {
-            method: "POST",
-            body: JSON.stringify(info),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          console.log(response);
-          const data = await response.json();
-          console.log(data);
-
-          if (data.access_token) {
-            setStore({ currentUser: data });
-            sessionStorage.setItem("currentUser", JSON.stringify(data));
-            navigate("/profile");
-          } else {
-            setStore({
-              alert: {
-                text: "Usuario no registrado",
-                show: true,
-                textbtn: "Registrarme",
-              },
-            });
-            alert("Usuario No registrado / Correo o Contraseña incorrectas");
-          }
-        } catch (error) {
-          console.log(error);
-          console.log("hay un error en el login");
-        }
-      },
-
-      handleChangeLogin: (e) => {
-        setStore({
-          [e.target.name]: e.target.value,
-        });
-      },
-      // VERIFICA QUE EXISTA EL USUARIO 
-      checkUser: () => {
-        if (sessionStorage.getItem("currentUser")) {
-          setStore({
-            currentUser: JSON.parse(sessionStorage.getItem("currentUser")),
-          });
-        }
-      },
-
-      logout: () => {
-        if (sessionStorage.getItem("currentUser")) {
-          setStore({
-            currentUser: null,
-          });
-          sessionStorage.removeItem("currentUser");
-        }
-      },
-
-      ///POST LIBRO CON FOTOS      
-      postBook: async (formData, navigate) => {
-        try {
-          const { url, currentUser } = getStore();
-          const token = currentUser ? currentUser.access_token : '';
-          const response = await fetch(`${url}/api/registerBook`, {
-            method: "POST",
-            body: formData,
-            headers: {
-              "Authorization": `Bearer ${token}`
-            },
-          })
-            .then(response => response.text())
-            .then(result => {
-              navigate("/");
-              getActions().getLibros();
-              console.log(result)
-            })
-            .catch(error => alert(error));
-        } catch (error) {
-          console.log(error);
-        }
-      },
-
-      ///SUBMIT FORM LIBRO CON FOTO
-      submitBookImage: (e, navigate) => {
-        try {
-          e.preventDefault()
-          const { title, author, cathegory, number_of_pages, description, price, photo, type } = getStore();
-          const formData = new FormData()
-          formData.append('title', title)
-          formData.append('author', author)
-          formData.append('cathegory', cathegory)
-          formData.append('number_of_pages', number_of_pages)
-          formData.append('description', description)
-          formData.append('price', price)
-          formData.append('photo', photo)
-          formData.append('type', type)
-          getActions().postBook(formData, navigate)
-          e.target.reset()
-
-          console.log("SUBMIT")
-        } catch (error) {
-          console.log(error)
-
-        }
-      },
-
-      ///GUARDAR VALOR INPUT IMAGEN LIBRO
-      inputBookImage: (file) => {
-        setStore({ photo: file });
-      },
-
-      ///GUARDAR OTROS CAMPOS DEL INPUT
-      inputBookValue: (e) => {
-        const { name, value } = e.target;
-
-        setStore({
-          ...getStore(),
-          [name]: value
-        });
-      },
+						setStore({ oneBook: data });
+						console.log("tengo el libro");
+						console.log("oneBook:", data);
+					})
+					.catch(error => console.log('error', error));
+			},
 
 
 
-      //REGISTRO DE USUARIO CON FOTO
+			//---------< funcion para  registro  de usuario >----------------->
 
-      ///GUARDAR VALOR INPUT IMAGEN USUARIO
-      inputUserImage: (file) => {
-        setStore({ userImage: file });
-      },
+			handleChangeRegister: (e) => {
+				const { newUser } = getStore();
+				e.preventDefault();
+				newUser[e.target.name] = e.target.value;
+				setStore({ newUser });
+				console.log("newUser:", getStore().newUser);
+			},
 
-      ///GUARDAR OTROS CAMPOS DEL INPUT USUARIO
-      inputUserValue: (e) => {
-        const { name, value } = e.target;
+			submitRegister: (e, navigate) => {
+				e.preventDefault();
 
-        setStore({
-          ...getStore(),
-          [name]: value
-        });
-      },
+				if (getStore().newUser.password === getStore().newUser.rep_password) {
+					getActions().saveUser(navigate);
+				} else {
+					alert("las contraseñas no coinciden");
+				}
+			},
 
-      ///SUBMIT FORM REGISTRO DE USUARIO CON FOTO
-      submitUserImage: (e, navigate) => {
-        try {
-          e.preventDefault()
-          const { name, lastname, email, password, rep_password, region, userImage } = getStore();
-          const formData = new FormData()
+			saveUser: async (navigate) => {
+				try {
+					const { url, newUser } = getStore();
+					const response = await fetch(`${url}/api/register`, {
+						method: "POST",
+						body: JSON.stringify(newUser),
+						headers: { "Content-Type": "application/json" },
+					});
+					const data = await response.json();
+					console.log("data", data);
+					navigate("/login");
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			//----------< Login usuario >---------------------------------------------->
 
-          if (getStore().password === getStore().rep_password) {
-            formData.append('name', name)
-            formData.append('lastname', lastname)
-            formData.append('email', email)
-            formData.append('password', password)
-            formData.append('rep_password', rep_password)
-            formData.append('region', region)
-            formData.append('userImage', userImage)
-            getActions().postUser(formData, navigate)
-            e.target.reset()
-            console.log("SUBMIT USER REGISTER")
-          } else {
-            alert("las contraseñas no coinciden");
-          }
 
-        } catch (error) {
-          console.log(error)
-        }
-      },
+			//---- funcion para  login  de usuario------------------------------------------->
+			handleSubmitLogin: async (e, navigate) => {
+				e.preventDefault();
+				try {
+					const { url, email, password, currentUser } = getStore();
+					let info = { email, password, currentUser };
+					const response = await fetch(`${url}/api/login`, {
+						method: "POST",
+						body: JSON.stringify(info),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
+					console.log(response);
+					const data = await response.json();
+					console.log(data);
 
-      ///POST USUARIO CON FOTOS      
-      postUser: async (formData, navigate) => {
-        try {
-          const { url } = getStore();
-          const response = await fetch(`${url}/api/register`, {
-            method: "POST",
-            body: formData,
+					if (data.access_token) {
+						setStore({ currentUser: data });
+						sessionStorage.setItem("currentUser", JSON.stringify(data));
+						navigate("/profile");
+					} else {
+						setStore({
+							alert: {
+								text: "Usuario no registrado",
+								show: true,
+								textbtn: "Registrarme",
+							},
+						});
+						alert("Usuario No registrado / Correo o Contraseña incorrectas");
+					}
+				} catch (error) {
+					console.log(error);
+					console.log("hay un error en el login");
+				}
+			},
 
-          })
-            .then(response => response.text())
-            .then(result => {
-              navigate("/login");
-              console.log(result)
-            })
-            .catch(error => alert(error));
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      ///CAMBIO DE DISPONIBILIDAD DE LIBRO
-      putAvailableBook: async (id, navigate) => {
-        try {
-          var formdata = new FormData();
-          formdata.append("available", "False");
-          const { oneBook } = getStore();
+			handleChangeLogin: (e) => {
+				setStore({
+					[e.target.name]: e.target.value,
+				});
+			},
+			// VERIFICA QUE EXISTA EL USUARIO 
+			checkUser: () => {
+				if (sessionStorage.getItem("currentUser")) {
+					setStore({
+						currentUser: JSON.parse(sessionStorage.getItem("currentUser")),
+					});
+				}
+			},
 
-          var requestOptions = {
-            method: 'PUT',
-            body: formdata,
-            redirect: 'follow'
-          };
+			logout: () => {
+				if (sessionStorage.getItem("currentUser")) {
+					setStore({
+						currentUser: null,
+					});
+					sessionStorage.removeItem("currentUser");
+				}
+			},
 
-          fetch(`http://localhost:3001/api/comprar/${id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-              navigate("/");
-              console.log("Cambiando disponibilidad");
-              console.log(result)
-            })
-            .catch(error => console.log('error', error));
-        } catch (error) {
-          console.log(error);
-        }
-      },
+			///POST LIBRO CON FOTOS      
+			postBook: async (formData, navigate) => {
+				try {
+					const { url, currentUser } = getStore();
+					const token = currentUser ? currentUser.access_token : '';
+					const response = await fetch(`${url}/api/registerBook`, {
+						method: "POST",
+						body: formData,
+						headers: {
+							"Authorization": `Bearer ${token}`
+						},
+					})
+						.then(response => response.text())
+						.then(result => {
+							navigate("/");
+							getActions().getLibros();
+							console.log(result)
+						})
+						.catch(error => alert(error));
+				} catch (error) {
+					console.log(error);
+				}
+			},
 
-      ///ENVIO DE MENSAJE
-      postMensaje: async () => {
-        try {
-          const { url, sender_id, receiver_id, book_id, message_text } = getStore();
-          let infoMessage = { sender_id, receiver_id, book_id, message_text, };
-          const response = await fetch(`${url}/api/messages`, {
-            method: "POST",
-            body: JSON.stringify(infoMessage),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then(response => response.text())
-            .then(result => {
-              console.log('Mensaje creado:', result);
-            })
-            .catch(error => alert(error));
-        } catch (error) {
-          console.log(error);
-        }
-      },
+			///SUBMIT FORM LIBRO CON FOTO
+			submitBookImage: (e, navigate) => {
+				try {
+					e.preventDefault()
+					const { title, author, cathegory, number_of_pages, description, price, photo, type } = getStore();
+					const formData = new FormData()
+					formData.append('title', title)
+					formData.append('author', author)
+					formData.append('cathegory', cathegory)
+					formData.append('number_of_pages', number_of_pages)
+					formData.append('description', description)
+					formData.append('price', price)
+					formData.append('photo', photo)
+					formData.append('type', type)
+					getActions().postBook(formData, navigate)
+					e.target.reset()
 
-      //GUARDA DATA EN PARAMETROS PARA EL MENSAJE
-      inputMessage1: (sender_id, receiver_id, book_id, message_text) => {
-        // Actualiza el estado global con los argumentos recibidos
-        setStore({
-          ...getStore(),
-          sender_id: sender_id,
-          receiver_id: receiver_id,
-          book_id: book_id,
-          message_text: message_text
-        });
-        getActions().postMensaje();
-      },
+					console.log("SUBMIT")
+				} catch (error) {
+					console.log(error)
 
-      ///MUESTRO TODOS LOS MENSAJES POR USUARIO
-      getAllMensajesUser: (id) => {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
+				}
+			},
 
-        fetch(`http://localhost:3001/api/messages/sender/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            setStore({ allMessagesUser: data });
-            console.log("mensaje por usuario");
-            console.log("allMessagesUser:", data);
-          })
-          .catch(error => console.log('error', error));
-      },
+			///GUARDAR VALOR INPUT IMAGEN LIBRO
+			inputBookImage: (file) => {
+				setStore({ photo: file });
+			},
 
-      ///TODO LOS MENSAJES POR LIBRO
-      getMensajesLibro: (id) => {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
-        };
+			///GUARDAR OTROS CAMPOS DEL INPUT
+			inputBookValue: (e) => {
+				const { name, value } = e.target;
 
-        fetch(`http://localhost:3001/api/messages/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            setStore({ buyChat: data });
-            console.log("mensaje por libro");
-            console.log("buyChat:", data);
-          })
-          .catch(error => console.log('error', error));
-      },
+				setStore({
+					...getStore(),
+					[name]: value
+				});
+			},
 
-      allBookIdBuyUser: () => {
-        const { allMessagesUser } = getStore();
-        const bookIds = allMessagesUser.map(e => e.book_id);
-        setStore({ booksIdBuy: bookIds });
-      }
 
-      // FUNCION PARA OBTENER LOS LIBROS DONADOS
-      getLibrosDonados: () => {
-        fetch(getStore().url+"/api/libros_donados")
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          setStore({donatedBook: data.libros})
-        })
-        .catch(error => console.log('error', error));
-      }
 
-    },
-  };
+			//REGISTRO DE USUARIO CON FOTO
+
+			///GUARDAR VALOR INPUT IMAGEN USUARIO
+			inputUserImage: (file) => {
+				setStore({ userImage: file });
+			},
+
+			///GUARDAR OTROS CAMPOS DEL INPUT USUARIO
+			inputUserValue: (e) => {
+				const { name, value } = e.target;
+
+				setStore({
+					...getStore(),
+					[name]: value
+				});
+			},
+
+			///SUBMIT FORM REGISTRO DE USUARIO CON FOTO
+			submitUserImage: (e, navigate) => {
+				try {
+					e.preventDefault()
+					const { name, lastname, email, password, rep_password, region, userImage } = getStore();
+					const formData = new FormData()
+
+					if (getStore().password === getStore().rep_password) {
+						formData.append('name', name)
+						formData.append('lastname', lastname)
+						formData.append('email', email)
+						formData.append('password', password)
+						formData.append('rep_password', rep_password)
+						formData.append('region', region)
+						formData.append('userImage', userImage)
+						getActions().postUser(formData, navigate)
+						e.target.reset()
+						console.log("SUBMIT USER REGISTER")
+					} else {
+						alert("las contraseñas no coinciden");
+					}
+
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
+			///POST USUARIO CON FOTOS      
+			postUser: async (formData, navigate) => {
+				try {
+					const { url } = getStore();
+					const response = await fetch(`${url}/api/register`, {
+						method: "POST",
+						body: formData,
+
+					})
+						.then(response => response.text())
+						.then(result => {
+							navigate("/login");
+							console.log(result)
+						})
+						.catch(error => alert(error));
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			///CAMBIO DE DISPONIBILIDAD DE LIBRO
+			putAvailableBook: async (id, navigate) => {
+				try {
+					var formdata = new FormData();
+					formdata.append("available", "False");
+					const { oneBook } = getStore();
+
+					var requestOptions = {
+						method: 'PUT',
+						body: formdata,
+						redirect: 'follow'
+					};
+
+					fetch(`http://localhost:3001/api/comprar/${id}`, requestOptions)
+						.then(response => response.text())
+						.then(result => {
+							navigate("/");
+							console.log("Cambiando disponibilidad");
+							console.log(result)
+						})
+						.catch(error => console.log('error', error));
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			///ENVIO DE MENSAJE
+			postMensaje: async () => {
+				try {
+					const { url, sender_id, receiver_id, book_id, message_text } = getStore();
+					let infoMessage = { sender_id, receiver_id, book_id, message_text, };
+					const response = await fetch(`${url}/api/messages`, {
+						method: "POST",
+						body: JSON.stringify(infoMessage),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					})
+						.then(response => response.text())
+						.then(result => {
+							console.log('Mensaje creado:', result);
+						})
+						.catch(error => alert(error));
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			//GUARDA DATA EN PARAMETROS PARA EL MENSAJE
+			inputMessage1: (sender_id, receiver_id, book_id, message_text) => {
+				// Actualiza el estado global con los argumentos recibidos
+				setStore({
+					...getStore(),
+					sender_id: sender_id,
+					receiver_id: receiver_id,
+					book_id: book_id,
+					message_text: message_text
+				});
+				getActions().postMensaje();
+			},
+
+			///MUESTRO TODOS LOS MENSAJES POR USUARIO
+			getAllMensajesUser: (id) => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+
+				fetch(`http://localhost:3001/api/messages/sender/${id}`, requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ allMessagesUser: data });
+						console.log("mensaje por usuario");
+						console.log("allMessagesUser:", data);
+					})
+					.catch(error => console.log('error', error));
+			},
+
+			///TODO LOS MENSAJES POR LIBRO
+			getMensajesLibro: (id) => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+
+				fetch(`http://localhost:3001/api/messages/${id}`, requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ buyChat: data });
+						console.log("mensaje por libro");
+						console.log("buyChat:", data);
+					})
+					.catch(error => console.log('error', error));
+			},
+
+			allBookIdBuyUser: () => {
+				const { allMessagesUser } = getStore();
+				const bookIds = allMessagesUser.map(e => e.book_id);
+				setStore({ booksIdBuy: bookIds });
+			},
+
+			// FUNCION PARA OBTENER LOS LIBROS DONADOS
+			getLibrosDonados: () => {
+				fetch(getStore().url + "/api/libros_donados")
+					.then(response => response.json())
+					.then(data => {
+						console.log(data)
+						setStore({ donatedBook: data.libros })
+					})
+					.catch(error => console.log('error', error));
+			},
+
+			getLibrosDonadosUsuario: () => {
+				const id = getStore().currentUser?.user?.id;
+				fetch(getStore().url + '/api/libros_donados_usuario/' + id)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data);
+						setStore({
+							librosDonadosUsuario: data, envio: {
+								email: '',
+								libro: null,
+								comentario: '',
+								enviado: false
+							}
+						})
+					})
+					.catch(erro => console.log(erro));
+
+			},
+
+			changeEnvio: (e) => {
+				e.preventDefault();
+				let envio = getStore().envio;
+				const { name, value } = e.target;
+				envio[name] = value;
+				console.log(envio);
+				setStore({ envio: envio });
+				console.log(getStore().envio);
+			},
+
+			confirmarEnvioDonacion: () => {
+				const envio = getStore().envio;
+				envio['currentUserId'] = getStore().currentUser?.user?.id;
+				console.log(envio);
+				fetch(getStore().url + '/api/confirmar_donacion', {
+					method: "POST",
+					body: JSON.stringify(envio),
+					headers: {
+						"Content-Type": "application/json",
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({
+							envio: {
+								email: '',
+								libro: null,
+								comentario: '',
+								enviado: true
+							}
+						});
+					})
+					.catch(error => console.log(error));
+			},
+
+			getLibrosDonados: () => {
+				let id  = getStore().currentUser?.user?.id;
+				console.log(id)
+				fetch(getStore().url + '/api/get_libros_donados/' + id)
+				.then(resp=>resp.json())
+				.then(data=>{
+					console.log(data);
+					setStore({librosDonadosRecibidos:data})
+				})
+				.catch(error => console.log(error))
+
+			},
+
+			changeConfirmacionComentario:(e)=>{
+				e.preventDefault();
+				let confirmacion = getStore().confirmacionDonacion;
+				setStore({confirmacionDonacion:{...confirmacion, comentario: e.target.value}});
+				console.log(getStore().confirmacionDonacion);
+			},
+
+			enviarConfirmacion:()=>{
+				fetch(getStore().url + '/api/confirmar_donacion_receptor',{
+					method: 'POST',
+					headers:{
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify(getStore().confirmacionDonacion)
+				})
+				.then(resp=>resp.json())
+				.then(data=>{
+					let libros = getStore().librosDonadosRecibidos?.filter(libro => libro.id != getStore().confirmacionDonacion.id)
+					setStore({librosDonadosRecibidos: libros});
+					console.log(getStore().librosDonadosRecibidos)
+					const boton = document.getElementById('botonCerrar');
+					boton.click();
+						
+				})
+				.catch(error=>console.log(error));
+			},
+
+			asignarDonacion:(id)=>{
+				let confirmacion = getStore().confirmacionDonacion;
+				setStore({confirmacionDonacion:{...confirmacion, id: id}})
+			}
+		}
+	}
 };
 
 

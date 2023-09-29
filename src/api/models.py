@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 from sqlalchemy import ForeignKey
 
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -49,9 +48,9 @@ class Book(db.Model):
     price = db.Column(db.String(120), nullable=False) 
     available = db.Column(db.Boolean, default=True) #disponibilidad del libro        
     photo = db.Column(db.String(120), default="no-photo.png")
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # libro con id del usaurio
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # libro con id del usaurio
     user = db.relationship('User', backref=db.backref('books', lazy=True)) # definicion de realcion con usaurio
-
+    donaciones = db.relationship('Donacion', back_populates="book")
     def serialize(self):
         return {
             "id": self.id,
@@ -64,7 +63,7 @@ class Book(db.Model):
             "price": self.price,
             "photo": self.photo,
             "available": self.available,
-            "usuario": self.usuario.serialize()
+            "usuario": self.user.serialize()
         }
 
     def save(self):
@@ -169,4 +168,33 @@ class Mensaje(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
- 
+
+class Donacion(db.Model):
+    __tablename__='donaciones'
+    id = db.Column(db.Integer, primary_key=True)
+    donante_id =  db.Column(db.Integer, db.ForeignKey('user.id'))
+    receptor_id =  db.Column(db.Integer, db.ForeignKey('user.id'))
+    comentario_donante = db.Column(db.String(255))
+    comentario_receptor = db.Column(db.String(255))
+    confirmacion = db.Column(db.Boolean, default=False)
+    book_id =  db.Column(db.Integer, db.ForeignKey('book.id'))
+    book = db.relationship('Book', back_populates="donaciones")
+
+    def serialize(self):
+        book = self.book.serialize() if self.book is not None else {}
+        return {
+            "id":self.id,
+            "donante_id" : self.donante_id,
+            "recepctor_id" : self.receptor_id,
+            "comentario_donante" : self.comentario_donante,
+            "comentario_receptor" : self.comentario_receptor,
+            "confirmacion" : self.confirmacion,
+            "book": book
+        }
+
+    def update(self):
+        db.session.commit()
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

@@ -13,7 +13,6 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
 import cloudinary
-from flask_mail import Mail, Message
 
 
 
@@ -96,4 +95,3 @@ app.config['MAIL_PASSWORD'] = '1D17A73AADBF87D90B6F1F0F4915E2375F58'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
-mail = Mail(app)

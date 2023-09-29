@@ -1,28 +1,55 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 
 export const ConfirmacionEnvio = () => {
-    return (<div className="container">
-        <div className="mb-3 mx-auto p-2">
-  <label for="exampleFormControlInput1" className="form-label">Email</label>
-  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="email de usuario registrado"/>
-</div>
-        <div className="mb-3 mx-auto p-2">
-  <label for="exampleFormControlInput1" className="form-label">Libro</label>
-  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="email de usuario registrado"/>
-</div>
-<select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-<div className="mb-3">
-  <label for="exampleFormControlTextarea1" className="form-label">Comentario</label>
-  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  <button type="button" class="btn btn-dark">Confirmar</button>
-</div>
-</div>
+    const estiloenvio = {
+        backgroundColor: 'rgba(211, 197, 146)',
+      };
+    
+    const { store, actions } = useContext(Context);
+
+    useEffect(()=>{
+        actions.getLibrosDonadosUsuario();
+    },[])
+    return (<div style={estiloenvio}>
+        <div className="container">
+            {store.envio.enviado &&	
+                <div className="alert alert-success">
+                    Se ha realizado la donacion
+                </div>
+            }
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Envio de Donación</h5>
+                    <div className="mb-3 mx-auto p-2">
+                        <label for="exampleFormControlInput1" className="form-label">Email</label>
+                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="email de usuario registrado" name="email" value={store.envio.email} onChange={actions.changeEnvio}/>
+                    </div>
+                    <div className="mb-3 mx-auto p-2">
+                        <label htmlFor="">Selecciona el libro</label>
+                        <select class="form-select" aria-label="Default select example" name="libro" value={store.envio.libro} onChange={actions.changeEnvio}>
+                            <option selected>Selecciona tu libro</option>
+                            {
+                                store.librosDonadosUsuario?.map(libro=>{
+                                    return(
+                                        <option value={libro?.id}>{libro?.title}</option>
+                                    )
+                                })
+                            }
+                        </select>
+
+                    </div>
+                    <div className="mb-3 mx-auto p-2">
+                        <label for="exampleFormControlTextarea1" className="form-label">Comentario</label>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={store.envio.comentario} name="comentario" onChange={actions.changeEnvio}></textarea>
+                        <button type="button" class="btn btn-dark mt-2" onClick={actions.confirmarEnvioDonacion}>Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
     )
 }
