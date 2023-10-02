@@ -10,7 +10,7 @@ export const AllBooks = () => {
     <div>
       <div className="container-fluid">
         <div className="text-center m-3 mt-5 mb-5">
-          <h1>LIBROS EN VENTA</h1>
+          <h1>TODOS LOS LIBROS</h1>
         </div>
         <div className="d-flex flex-wrap justify-content-center">
           {store.showBooks.map((libro, i) => (
@@ -30,7 +30,7 @@ export const AllBooks = () => {
               <div className="card-body">
                 <h6 className="card-title">{libro.title}</h6>
                 <p className="card-text">{libro.author}</p>
-                <p className="card-text">${libro.price}</p>
+                <p className="card-text">{libro.price}</p>
               </div>
               <div className="d-flex justify-content-between align-items-center m-1">
                 <Link

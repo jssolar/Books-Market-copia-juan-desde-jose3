@@ -26,49 +26,32 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          {location?.pathname !== "/register" &&
-            location?.pathname !== "/login" &&
-            location?.pathname !== "/registroLibro" && (
-              <div className="col py-1">
+          {location.pathname !== "/register" &&
+            location.pathname !== "/login" &&
+            location.pathname !== "/registroLibro" && (
+              <div className="col">
                 <form className="d-flex" role="search">
                   <input
-                    className="form-control m-0"
-                    style={{
-                      borderTopLeftRadius: "20px",
-                      borderBottomLeftRadius: "20px",
-                      borderTopRightRadius: "0",
-                      borderBottomRightRadius: "0",
-                    }}
+                    className="form-control me-2"
                     type="search"
-                    placeholder="Buscar"
+                    placeholder="Search"
                     aria-label="Search"
                   />
-                  <button
-                    className="btn btn-dark pb-2 px-3 ms-0"
-                    type="submit"
-                    style={{
-                      borderTopLeftRadius: "0px",
-                      borderBottomLeftRadius: "0px",
-                      borderTopRightRadius: "20px",
-                      borderBottomRightRadius: "20px",
-                    }}
-                  >
-                    Buscar
+                  <button className="btn btn-light" type="submit">
+                    Search
                   </button>
                 </form>
               </div>
             )}
           <div className="col">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-end">
-              {location?.pathname !== "/register" &&
-                location?.pathname !== "/login" &&
-                location?.pathname !== "/registroLibro" && (
+              {location.pathname !== "/register" &&
+                location.pathname !== "/login" &&
+                location.pathname !== "/registroLibro" && (
                   <li className="nav-item">
-                    <Link
-                      className="nav-link active text-dark mx-2"
-                      aria-current="page"
-                      to="#"
-                    ></Link>
+                    <a className="nav-link text-white" href="#">
+                      Wish List
+                    </a>
                   </li>
                 )}
 
@@ -94,11 +77,8 @@ export const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/registerBook"
-                        className="dropdown-item bg-dark text-light"
-                      >
-                        Publicar Libro
+                      <Link to="/registerBook" className="dropdown-item">
+                        Publica tu libro
                       </Link>
                     </li>
                     <li>
@@ -133,10 +113,7 @@ export const Navbar = () => {
                     </li>
                     <hr className="dropdown-divider" />
                     <li>
-                      <Link
-                        to="/register"
-                        className="dropdown-item bg-dark text-light"
-                      >
+                      <Link to="/register" className="dropdown-item">
                         Registrarse
                       </Link>
                     </li>
@@ -144,10 +121,7 @@ export const Navbar = () => {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link
-                        to="/register2"
-                        className="dropdown-item bg-dark text-light"
-                      >
+                      <Link to="/register2" className="dropdown-item">
                         Something else here
                       </Link>
                     </li>
@@ -158,45 +132,45 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      {location?.pathname !== "/register" &&
-        location?.pathname !== "/login" &&
-        location?.pathname !== "/registroLibro" && (
-          <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark ">
-            <div className="container-fluid d-flex justify-content-center">
+      {location.pathname !== "/register" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/registroLibro" && (
+          <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+            <div className="container-fluid d-flex justify-content-around">
               <div className="">
                 <Link
                   to="/allBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="nav-link active text-white"
                   aria-current="page"
                 >
-                  LIBROS DISPONIBLES
+                  Libros disponibles
                 </Link>
               </div>
               <div className="">
                 <Link
-                  to="/purchasedBooks"
-                  className="navbarItem nav-link active mx-4"
+                  to="/exchangeBooks"
+                  className="nav-link active text-white"
                   aria-current="page"
                 >
-                  LIBROS PARA INTERCAMBIO
+                  Intercambio
                 </Link>
               </div>
               <div className="">
                 <Link
-                  to="/masVendidos"
-                  className="navbarItem nav-link active mx-4"
+                  to="/saleBooks"
+                  className="nav-link active text-white"
                   aria-current="page"
                 >
-                  VENTA
+                  Venta
                 </Link>
               </div>
               <div className="">
                 <Link
                   to="/enviar_formulario"
-                  className="navbarItem nav-link active mx-4"
+                  className="nav-link active text-white"
                   aria-current="page"
                 >
-                  DONACIONES REALIZADAS
+                  Donaciones realizadas
                 </Link>
               </div>
             </div>

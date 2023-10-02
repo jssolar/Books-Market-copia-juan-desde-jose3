@@ -17,7 +17,7 @@ class User(db.Model):
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(250), nullable=False)
     region = db.Column(db.String(120), nullable=False)
-    #photo = db.Column(db.String(120), default="no-photo.png")
+    #userImage = db.Column(db.String(120), default="no-userImage.png")
     message_from = db.relationship('Message', foreign_keys="[Message.user_from_id]", backref='user_from')
     message_to = db.relationship('Message', foreign_keys='[Message.user_to_id]', backref='user_to')
     books_user = db.relationship('Book', backref='user', lazy=True)
@@ -285,7 +285,12 @@ class Book(db.Model):
     type = db.Column(db.String(120), nullable=False) #venta o intercambio
     price = db.Column(db.String(120), nullable=False) 
     available = db.Column(db.Boolean, default=True) #disponibilidad del libro        
+    type = db.Column(db.String(120), nullable=False) #venta o intercambio
+    price = db.Column(db.String(120), nullable=False) 
+    available = db.Column(db.Boolean, default=True) #disponibilidad del libro        
     photo = db.Column(db.String(120), default="no-photo.png")
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # libro con id del usaurio
+    user = db.relationship('User', backref=db.backref('books', lazy=True)) # definicion de realcion con usaurio
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # libro con id del usaurio
     user = db.relationship('User', backref=db.backref('books', lazy=True)) # definicion de realcion con usaurio
 
@@ -301,6 +306,8 @@ class Book(db.Model):
             "price": self.price,
             "photo": self.photo,
             "available": self.available,
+            "user_id": self.user_id,
+            "available": self.available,
             "user_id": self.user_id
         }
 
@@ -314,6 +321,8 @@ class Book(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
 
 
 
