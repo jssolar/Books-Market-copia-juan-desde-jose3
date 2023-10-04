@@ -21,29 +21,25 @@ from sqlalchemy import and_
 
 api = Blueprint('api', __name__)
 
-# -----<listar todos los usuiarios >------------------------------------------------------>
-@api.route('/users', methods=[ 'GET', 'POST'])
-def home():
-    
-    users = User.query.all()
-    users = list(map(lambda user: user.serialize_user(), users))
 
-    return jsonify({
-        "data": users
-    }), 200
-    
-# -----< traer solo un usuario >----------------------->
-@api.route('/users/<int:user_id>', methods=['GET'])
-def get_user(user_id):
-    user = User.query.get(user_id)
-    if user:
-        return jsonify({
-            "data": user.serialize_user()
-        }), 200
-    else:
-        return jsonify({
-            "message": "User not found"
-        }), 404
+@api.route('/hello', methods=['POST', 'GET'])
+def handle_hello():
+
+    response_body = {
+        "message": "Hello! I'm a message"
+    }
+
+    return jsonify(response_body), 200
+
+# LISTA TODOS LOS USUARIOS CREADOS
+@api.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()  # Obtén todos los usuarios de la base de datos
+    user_list = [user.serialize() for user in users]  # Serializa los usuarios en una lista de objetos JSON
+    return jsonify(user_list), 200  # Devuelve la lista de usuarios en formato JSON con código de estado 200
+
+
+#------< registrar usuario >-------------#
 
 @api.route('/register', methods=['POST'])
 def user_register():
@@ -136,102 +132,29 @@ def login():
     if not check_password_hash(user.password, password):
         return jsonify({"error": "tu usuario o contraseña son incorrectos"}), 401 
         
-                
-    expires=datetime.timedelta(days=30)
-    
+        
+        
+    expires=datetime.timedelta(days=30)    
     access_token = create_access_token(identity=user.id, expires_delta=expires)
     print(access_token)
-
     data = {
-        "success": "inicio de sesion exitoso",
+        # "success": "inicio de sesion exitoso",
         "access_token": access_token,
         "type": "Bearer",
         "user": user.serialize()
     }
-        
     return jsonify(data), 200
 
-#-----< actualizar user >-----------------------------
-@api.route('/update_user/<int:id>', methods=['PUT'])
-@jwt_required()
-def update_user(id):
-    data = request.get_json()
-    
-    user = User.query.get(id)
-    user.name = data["name"] if data['name'] else user.name
-    user.lastname = data["lastname"] if data['lastname'] else user.lastname
-    user.email = data["email"] if data['email'] else user.email
-    user.password = data["password"] if data['password'] else user.password
-    user.region = data["region"] if data['region'] else user.region
-    user.update()
-    
-    return jsonify({
-        "msg": "User updated", "user":user.serialize()
-    }), 200
-    
-        
-@api.route('delete_user/<int:id>', methods=['DELETE'])
-@jwt_required()
-def delete_user(id):
-    user = User.query.get(id)
-    user.delete()
-    
-    return jsonify({"msg": "User has been deleted", "user": {}}), 200
 
+# generando ruta privada
 
-#-----< Login User  codigo original-rama form>------------------------------------------------------------------->
-""" @api.route('/login', methods=['POST'])
-def login():
-    
-    data = request.get_json()
-        
-    email = request.json.get("email")
-    password = request.json.get("password")
-
-# ------< validacion usuario, datos ingresados >------#
-    if not email:
-        return jsonify({"error": "email is requare"}), 422
-
-    if not password:
-        return jsonify({"error": "password is requare"}), 422
-
-# ------< BUSCAMOS AL USUARIO >------------------------------------->
-    user = User.query.filter_by(email=email).first()
-    
-#------< si no existe el usuario >------------------------------------->
-    if not user: 
-        return jsonify({"error": "tu usuario o contraseña son incorrectos"}), 401
-    
-#------< validamos la contraseña >------------------------------------->
-    if not check_password_hash(user.password, password):
-        return jsonify({"error": "tu usuario o contraseña son incorrectos"}), 401 
-    
-        
-    expires=datetime.timedelta(days=30)
-    
-    access_token = create_access_token(identity=user.id, expires_delta=expires)
-    print(access_token)
-
-    data = {
-        "success": "inicio de sesion exitoso",
-        "access_token": access_token,
-        "type": "Bearer",
-        "user": user.serialize()
-    }
-
-
-    return jsonify(data), 200
- """
-
-# -----< generando ruta privada, datos de usuario, perfil >---------------------------------------->
-@api.route('/profile', methods=['GET', 'POST'])
+@api.route('/profile', methods=['GET'])
 @jwt_required()
 def profile():
-
+    
     id = get_jwt_identity()
     user = User.query.get(id)
-    return jsonify({"msg": "ruta  privada", "user": user.serialize_user()
-                    }), 200
+    return jsonify({"message": "ruta  privada", "user": user.email}), 200
 
 
 @api.route('/upload', methods=['POST'])
@@ -271,7 +194,7 @@ def upload_image_route():
 @jwt_required()
 def crear_comentario():
     #user_id = get_jwt_identity()  # ID del usuario autenticado
-    
+      
     #book_id = request.json.get("book_id")
     comentario = request.json.get("comentario")
     

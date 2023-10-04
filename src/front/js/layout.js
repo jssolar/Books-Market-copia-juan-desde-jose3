@@ -6,7 +6,7 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 /* REGISTROS */
 import Login from "./component/login/Login";
-import Register from "./pages/register";
+import Register from "./pages/Register";
 import RegisterBook from "./pages/registerBook";
 
 /* CATEGORIAS */

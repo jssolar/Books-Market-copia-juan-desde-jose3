@@ -101,7 +101,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
-              Authorization: `Bearer ${token}`,
             },
           });
           const data = await response.json();
@@ -114,7 +113,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       ////FUNC. ENVIAR REGISTRO
       submitBook: (e, navigate) => {
         e.preventDefault();
-        //agregar verificación de usuario
         //agregar verificación de usuario
         getActions().saveBook(navigate);
       },

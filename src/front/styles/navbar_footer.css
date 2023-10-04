@@ -19,6 +19,14 @@
 .navbarItem:hover {
   color: white;
 }
+
+.img-navbar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: solid 2px rgba(231, 243, 7, 0.737);
+}
+
 /* FOOTER------------------------------------------------------------------------------- */
 .brandFooter {
   color: rgb(146, 197, 211) !important;

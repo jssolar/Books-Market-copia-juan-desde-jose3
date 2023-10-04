@@ -18,7 +18,7 @@ export const Banner = () => {
         <div className="col p-2 mt-5">
           <img
             src="https://insights.gostudent.org/hubfs/Insights_GoStudent_Blog_Images/world-book-day%20%282%29.jpg"
-            className="card-img-top shadow-sm p-3 mb-5 bg-white rounded"
+            className="card-img-top shadow-sm p-3 mb-5 bg-dark rounded-circle"
             alt="..."
           />
         </div>

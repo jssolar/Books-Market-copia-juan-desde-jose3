@@ -49,7 +49,7 @@ api_key = "431472729639739",
 api_secret = "NECJAp7syLC9BzdBaIINMfkWW7s" 
 )
 
-          
+
 
 # add the admin
 setup_admin(app)
