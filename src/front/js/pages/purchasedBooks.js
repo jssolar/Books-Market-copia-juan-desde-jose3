@@ -38,6 +38,7 @@ const PurchasedBooks = () => {
                 <p className="card-text">{compra.book.author}</p>
                 <p className="card-text">{compra.book.price}</p>
                 <p>id libro: {compra.book.id}</p>
+                <p>vendedor {compra.seller_id}</p>
               </div>
               <div className="d-flex justify-content-between align-items-center m-1">
                 <Link to={`/myBuyDetails/${compra.book.id}`} className="btn btn-dark">Ver detalles</Link>

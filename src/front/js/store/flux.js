@@ -227,7 +227,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (data.access_token) {
             setStore({ currentUser: data });
             sessionStorage.setItem("currentUser", JSON.stringify(data));
-            navigate("/profile");
+            navigate("/");
           } else {
             setStore({
               alert: {

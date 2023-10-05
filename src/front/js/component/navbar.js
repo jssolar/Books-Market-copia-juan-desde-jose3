@@ -158,7 +158,7 @@ export const Navbar = () => {
                   className="navbarItem nav-link active mx-4"
                   aria-current="page"
                 >
-                  LIBROS EN VENTA
+                  LIBROS DISPONIBLES
                 </Link>
               </div>
               <div className="">
@@ -176,7 +176,7 @@ export const Navbar = () => {
                   className="navbarItem nav-link active mx-4"
                   aria-current="page"
                 >
-                  LIBROS MAS VENDIDOS
+                  LIBROS EN VENTA
                 </Link>
               </div>
               <div className="">

@@ -32,7 +32,8 @@ export const MyBuyDetails = () => {
               <p className="text-dark mb-3">{store.myOneBook[0]?.book?.author}</p>
               <p className="text-dark mb-3">{store.myOneBook[0]?.book?.description}</p>
               <p className="text-dark mb-3">{store.myOneBook[0]?.book?.user_name}</p>
-              <p>receiver: {store.myChat[0]?.receiver_id}</p>
+              <p>vendedor: {store.myOneBook[0]?.seller_id}</p>
+              <p>id del libro {store.myOneBook[0]?.book_id}</p>
             </div>
           </div>
         </div>
@@ -60,10 +61,10 @@ export const MyBuyDetails = () => {
             <form className="form-control shadow p-3" onSubmit={(e) => {
               actions.inputMessage1(
                 store.currentUser?.user?.id,
-                store.myChat[0]?.receiver_id,
-                store.myChat[0]?.book_id,
+                store.myOneBook[0]?.seller_id,
+                store.myOneBook[0]?.book_id,
                 store.message_text,
-                store.myChat[0]?.purchase_id,
+                store.myOneBook[0]?.id,
                 id,
                 store.myOneBook[0]?.id,
                 e,

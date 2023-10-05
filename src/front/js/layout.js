@@ -39,7 +39,6 @@ import { Footer } from "./component/footer";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "/";
-  const [useAlternateNavbar, setUseAlternateNavbar] = useState(false); // Estado para controlar el Navbar alternativo
   if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "")
     return <BackendURL />;
 

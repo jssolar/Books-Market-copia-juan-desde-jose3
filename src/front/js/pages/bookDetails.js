@@ -50,8 +50,8 @@ export const BookDetails = () => {
           </div>
           <div className="mt-4">
             <button type="button" className="btn btn-success" onClick={() => {
-              /* actions.putAvailableBook(store.oneBook?.id, navigate); */
-              /* actions.inputMessage1(store.currentUser?.user?.id, store.oneBook?.user_id, store.oneBook?.id, "Hola quisiera comprar tu libro"); */
+              /*  actions.putAvailableBook(store.oneBook?.id, navigate);
+               actions.inputMessage1(store.currentUser?.user?.id, store.oneBook?.user_id, store.oneBook?.id, "Hola quisiera comprar tu libro"); */
               actions.inputShopping(store.oneBook?.user_id, store.currentUser?.user?.id, store.oneBook?.id, formattedDate);
               actions.getLibros();
               actions.getExchangeBooks();
