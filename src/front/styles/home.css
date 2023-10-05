@@ -96,18 +96,18 @@ body {
 
 /* bienvenida---------------------------------------------- */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 
-/* body {
+body {
   font-size: 16px;
   font-weight: 300;
   line-height: 23px;
   font-family: "Poppins", sans-serif;
-} */
+}
 
 ul {
   list-style-type: none;
@@ -118,9 +118,9 @@ a:hover {
   text-decoration: none;
 }
 
-/* body {
+body {
   font-family: "Montserrat", sans-serif;
-} */
+}
 .testimonial {
   padding: 100px 0;
 }
@@ -162,9 +162,9 @@ a:hover {
   left: 97%;
   bottom: -81px;
 }
-/* .testimonial .row .tabs li:nth-child(1) figure img {
+.testimonial .row .tabs li:nth-child(1) figure img {
   margin-left: auto;
-} */
+}
 .testimonial .row .tabs li:nth-child(2) {
   align-self: flex-start;
 }
@@ -177,12 +177,12 @@ body .testimonial .row .tabs li:nth-child(2)::before {
   border-radius: 50%;
   right: -120px;
 }
-/* .testimonial .row .tabs li:nth-child(2) figure img {
+.testimonial .row .tabs li:nth-child(2) figure img {
   margin-right: auto;
   max-width: 300px;
   width: 100%;
   margin-top: -50px;
-} */
+}
 .testimonial .row .tabs li:nth-child(3) {
   align-self: flex-end;
 }
@@ -195,7 +195,7 @@ body .testimonial .row .tabs li:nth-child(2)::before {
   border-radius: 50%;
   right: -46px;
 }
-/* .testimonial .row .tabs li:nth-child(3) figure img {
+.testimonial .row .tabs li:nth-child(3) figure img {
   margin-left: auto;
   margin-top: -50px;
 }
@@ -207,8 +207,8 @@ body .testimonial .row .tabs li:nth-child(2)::before {
 }
 .testimonial .row .tabs li figure img {
   display: block;
-} */
-/* .testimonial .row .tabs li figure::after {
+}
+.testimonial .row .tabs li figure::after {
   content: "";
   position: absolute;
   top: 0;
@@ -223,17 +223,17 @@ body .testimonial .row .tabs li:nth-child(2)::before {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
-} */
-/* .testimonial .row .tabs li figure:hover::after {
+}
+.testimonial .row .tabs li figure:hover::after {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-} */
-/* .testimonial .row .tabs.carousel-indicators li.active figure::after {
+}
+.testimonial .row .tabs.carousel-indicators li.active figure::after {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-} */
+}
 .testimonial .row .carousel > h3 {
   font-size: 20px;
   line-height: 1.45;

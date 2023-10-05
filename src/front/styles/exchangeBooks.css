@@ -4,11 +4,14 @@
   gap: 16px;
 }
 .contenedor-card:hover {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
   transform: scale(1.05);
   transition: 0.5s ease;
 }
 
-.allbooks-img {
+.exchangeBooks-img {
   border-radius: 8px;
   width: 100%;
   height: auto;
@@ -16,22 +19,23 @@
   object-fit: cover;
   margin: 16px;
 }
-.tituloAll {
+.titulo-exchange {
   font-size: x-large;
 }
 
 .boton-ver-detalles {
   background-color: rgb(179, 146, 27);
   border: none;
+  border-radius: 8px;
 }
 
-/* .boton-ver-detalles:hover { */
-/* background-color: #008fb3; */
-/* background-color: rgb(146, 197, 211); */
-/* transition: 0.5s ease-in-out; */
-/* color: rgba(0, 0, 0, 0.4); */
-/* border-radius: 10rem; */
-/* box-shadow: 0px 0px 16px #000000c0; */
-/* color: rgb(255, 255, 255); */
-/* z-index: -1; */
-/* } */
+/* .boton-ver-detalles:hover {
+  background-color: #008fb3;
+  transition: 0.5s ease-in-out;
+  color: rgba(0, 0, 0, 0.4);
+  border-radius: 10rem;
+  box-shadow: 0px 0px 16px #000000c0;
+  z-index: -1;
+  transform: scale(1.1);
+}
+ */

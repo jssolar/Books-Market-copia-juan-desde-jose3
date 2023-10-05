@@ -12,9 +12,9 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div>
+    <>
       <Bienvenida />
       <Gallery />
-    </div>
+    </>
   );
 };

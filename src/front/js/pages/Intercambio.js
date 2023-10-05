@@ -18,7 +18,7 @@ const Intercambio = () => {
         <BannerIntercambio />
       </div>
       <div class="containerButton">
-        <a href="#" class="button ">
+        <a href="exchangeBooks" class="button ">
           Intercambiar
         </a>
       </div>
