@@ -18,7 +18,7 @@ export const AllBooks = () => {
     <div>
       <div className="container-fluid">
         <div className="text-center m-3 mt-5 mb-5">
-          <h1 className="tituloAll">LIBROS EN VENTA</h1>
+          <h1 className="tituloAll">Libros Disponibles</h1>
         </div>
         <div className="d-flex flex-wrap justify-content-center mb-5">
           {store.showBooks.map((libro, i) => (
