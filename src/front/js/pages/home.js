@@ -6,6 +6,8 @@ import "../../styles/home.css";
 import { Banner } from "../component/banner";
 import { Categorias } from "../component/categorias";
 import { Reviews } from "../component/reviews";
+import { Gallery } from "../component/gallery";
+import { Bienvenida } from "../component/bienvenida";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -19,9 +21,11 @@ export const Home = () => {
 
 	return (
 		<div>
+			<Bienvenida />
 			<Banner></Banner>
 			<Categorias></Categorias>
 			<Reviews></Reviews>
+			<Gallery />
 		</div>
 	);
 };

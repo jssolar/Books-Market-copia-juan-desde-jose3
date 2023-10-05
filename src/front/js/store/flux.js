@@ -71,105 +71,103 @@ const getState = ({ getStore, getActions, setStore }) => {
       ////FUNC LISTA DE LIBROS DISPONIBLES VENTA E INTERCAMBIO  
       getLibros: () => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch("http://localhost:3001/api/all_books", requestOptions)
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ showBooks: data });
             console.log("conseguí los libros");
             console.log("showBooks:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
-      ////LISTA LIBROS EN INTERCAMBIO  
+      ////LISTA LIBROS EN INTERCAMBIO
       getExchangeBooks: () => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch("http://localhost:3001/api/exchange_books", requestOptions)
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ exchangeBooks: data });
             console.log("libros intercambio");
             console.log("exchangeBook:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
-      ////LISTA LIBROS EN VENTA  
+      ////LISTA LIBROS EN VENTA
       getSaleBooks: () => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch("http://localhost:3001/api/sale_books", requestOptions)
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ saleBooks: data });
             console.log("libros venta");
             console.log("saleBook:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       ///MIS LIBROS EN VENTA
       getMySaleBooks: (id) => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch(`http://localhost:3001/api/sale_books/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ mySaleBooks: data });
             console.log("mis libros en venta");
             console.log("mySalesBooks:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       ///MIS LIBROS EN INTERCAMBIO
       getMyExchangeBooks: (id) => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch(`http://localhost:3001/api/exchange_books/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ myExchangeBooks: data });
             console.log("mis libros en intercambio");
             console.log("myExchangeBooks:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       ////FUNC DETALLE UN LIBRO
       getOneBook: (id) => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch(`http://localhost:3001/api/book_details/${id}`, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-
-
+          .then((response) => response.json())
+          .then((data) => {
             setStore({ oneBook: data });
             console.log("tengo el libro");
             console.log("oneBook:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       //---------< funcion para  registro  de usuario >----------------->
@@ -208,7 +206,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       //----------< Login usuario >---------------------------------------------->
-
 
       //---- funcion para  login  de usuario------------------------------------------->
       handleSubmitLogin: async (e, navigate) => {
@@ -271,25 +268,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      ///POST LIBRO CON FOTOS      
+      ///POST LIBRO CON FOTOS
       postBook: async (formData, navigate) => {
         try {
           const { url, currentUser } = getStore();
-          const token = currentUser ? currentUser.access_token : '';
+          const token = currentUser ? currentUser.access_token : "";
           const response = await fetch(`${url}/api/registerBook`, {
             method: "POST",
             body: formData,
             headers: {
-              "Authorization": `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
             },
           })
-            .then(response => response.text())
-            .then(result => {
+            .then((response) => response.text())
+            .then((result) => {
               navigate("/");
               getActions().getLibros();
-              console.log(result)
+              console.log(result);
             })
-            .catch(error => alert(error));
+            .catch((error) => alert(error));
         } catch (error) {
           console.log(error);
         }
@@ -330,7 +327,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           e.target.reset();
 
           console.log("SUBMIT");
+          console.log("SUBMIT");
         } catch (error) {
+          console.log(error);
           console.log(error);
         }
       },
@@ -347,7 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({
           ...getStore(),
-          [name]: value
+          [name]: value,
         });
       },
 
@@ -394,16 +393,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({
           ...getStore(),
-          [name]: value
+          [name]: value,
         });
       },
 
       ///SUBMIT FORM REGISTRO DE USUARIO CON FOTO
       submitUserImage: (e, navigate) => {
         try {
-          e.preventDefault()
-          const { name, lastname, email, password, rep_password, region, userImage } = getStore();
-          const formData = new FormData()
+          e.preventDefault();
+          const {
+            name,
+            lastname,
+            email,
+            password,
+            rep_password,
+            region,
+            userImage,
+          } = getStore();
+          const formData = new FormData();
 
           if (getStore().password === getStore().rep_password) {
             formData.append('name', name)
@@ -428,27 +435,25 @@ const getState = ({ getStore, getActions, setStore }) => {
           } else {
             alert("las contraseñas no coinciden");
           }
-
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
 
-      ///POST USUARIO CON FOTOS      
+      ///POST USUARIO CON FOTOS
       postUser: async (formData, navigate) => {
         try {
           const { url } = getStore();
           const response = await fetch(`${url}/api/register`, {
             method: "POST",
             body: formData,
-
           })
-            .then(response => response.text())
-            .then(result => {
+            .then((response) => response.text())
+            .then((result) => {
               navigate("/login");
-              console.log(result)
+              console.log(result);
             })
-            .catch(error => alert(error));
+            .catch((error) => alert(error));
         } catch (error) {
           console.log(error);
         }
@@ -461,18 +466,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           const { oneBook } = getStore();
 
           var requestOptions = {
-            method: 'PUT',
+            method: "PUT",
             body: formdata,
-            redirect: 'follow'
+            redirect: "follow",
           };
           fetch(`http://localhost:3001/api/comprar/${id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
+            .then((response) => response.text())
+            .then((result) => {
               navigate("/");
               console.log("Cambiando disponibilidad");
-              console.log(result)
+              console.log(result);
             })
-            .catch(error => console.log('error', error));
+            .catch((error) => console.log("error", error));
         } catch (error) {
           console.log(error);
         }
@@ -496,7 +501,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               getActions().getMyMessageForBook(getStore().idForChat);
               console.log('Mensaje creado:', result);
             })
-            .catch(error => alert(error));
+            .catch((error) => alert(error));
         } catch (error) {
           console.log(error);
         }
@@ -569,8 +574,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       ///COMPRAS POR USUARIO
       getAllMyPurchasedBooks: (id) => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch(`http://localhost:3001/api/purchases/buyer/${id}`, requestOptions)
@@ -579,14 +584,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ myBooksPurchased: data });
             console.log("myBooksPurchased:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       //VENTAS POR USUARIOS
       getAllMySoldBooks: (id) => {
         var requestOptions = {
-          method: 'GET',
-          redirect: 'follow'
+          method: "GET",
+          redirect: "follow",
         };
 
         fetch(`http://localhost:3001/api/purchases/seller/${id}`, requestOptions)
@@ -595,7 +600,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ myBooksSold: data });
             console.log("myBooksSold:", data);
           })
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log("error", error));
       },
 
       //DETALLE DE UNA COMPRA POR ID LIBRO
@@ -635,6 +640,5 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
   };
 };
-
 
 export default getState;

@@ -132,8 +132,11 @@ def login():
  #------< VALIDAMOS LA CONTRASEÑA
     if not check_password_hash(user.password, password):
         return jsonify({"error": "tu usuario o contraseña son incorrectos"}), 401 
-           
-    access_token = create_access_token(identity=user.id)
+        
+        
+        
+    expires=datetime.timedelta(days=30)    
+    access_token = create_access_token(identity=user.id, expires_delta=expires)
     print(access_token)
     data = {
         # "success": "inicio de sesion exitoso",

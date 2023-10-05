@@ -1,0 +1,60 @@
+.containerProfile {
+  background-color:  rgb(146, 197, 211);
+  margin: 3rem;
+  padding-top: 10rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  align-content: center;
+}
+.containerFoto{
+  background-color:  rgb(146, 197, 211);
+}
+.cardImage{
+  background: transparent;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.cardImage:hover {
+  box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273);
+  transition: all 0.7s linear;
+}
+.containerDatosPersonales{
+  background-color:  rgb(146, 197, 211);
+  margin-bottom: 1rem;
+  border: none;
+  text-align: center;
+}
+.bienvenida{
+  font-size: x-large;
+  margin-bottom: 0;
+}
+.itemPerfil{
+  background-color: rgb(179, 146, 27);
+  border: none;
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 5rem;
+}
+.nombre{
+  text-transform: capitalize;
+}
+.buttonPerfil{
+  background-color:rgb(146, 197, 211);
+  max-width: 10rem;
+  margin: 0 auto;
+  color:black
+}
+
+.overflow-profile {
+  overflow: hidden;
+  transition: all 0.9s linear;
+}
+
+.card-img-top-profile {
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-img-top-profile:hover {
+  transform: scale(1.8);
+}
