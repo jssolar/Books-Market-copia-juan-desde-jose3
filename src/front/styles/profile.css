@@ -13,7 +13,7 @@
   width: 300px;
   border-radius: 50%; */
 }
-.cardImage {
+
 .cardImage {
   background: transparent;
   border-radius: 50%;
@@ -23,20 +23,19 @@
   box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273);
   transition: all 0.7s linear;
 }
-.containerDatosPersonales {
-  background-color: rgb(146, 197, 211);
+
 .containerDatosPersonales {
   background-color: rgb(146, 197, 211);
   margin-bottom: 1rem;
   border: none;
   text-align: center;
 }
-.bienvenida {
+
 .bienvenida {
   font-size: x-large;
   margin-bottom: 0;
 }
-.itemPerfil {
+
 .itemPerfil {
   background-color: rgb(179, 146, 27);
   border: none;
@@ -44,12 +43,11 @@
   padding: 0.5rem;
   border-radius: 5rem;
 }
-.nombre {
+
 .nombre {
   text-transform: capitalize;
 }
-.buttonPerfil {
-  background-color: rgb(146, 197, 211);
+
 .buttonPerfil {
   background-color: rgb(146, 197, 211);
   max-width: 10rem;
