@@ -23,7 +23,6 @@ import PurchasedBooks from "./pages/purchasedBooks";
 import { Profile } from "./pages/profile";
 import SoldBooks from "./pages/soldBooks";
 
-
 import { MySaleBooks } from "./pages/mySaleBooks";
 import { MySaleBookDetails } from "./pages/mySaleBookDetails";
 import { MyExchangeBooks } from "./pages/myExchangeBooks";
@@ -36,6 +35,7 @@ import { ComoDonar } from "./pages/comoDonar";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { MyInformation } from "./pages/myInformation";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "/";
@@ -59,7 +59,10 @@ const Layout = () => {
             <Route element={<MySoldDetails />} path="/mySoldDetails/:id" />
             <Route element={<SobreNosotros />} path="/sobreNosotros" />
             <Route element={<NuestraHistoria />} path="/nuestraHistoria" />
-            <Route element={<DonacionesRealizadas />} path="/donacionesRalizadas" />
+            <Route
+              element={<DonacionesRealizadas />}
+              path="/donacionesRalizadas"
+            />
             <Route element={<ComoDonar />} path="/comoDonar" />
             <Route element={<BookReviews />} path="/bookreviews" />
             <Route element={<Login />} path="/login" />
@@ -67,8 +70,15 @@ const Layout = () => {
             <Route element={<Register />} path="/register" />
             <Route element={<RegisterBook />} path="/registerBook" />
             <Route element={<PurchasedBooks />} path="/purchasedBooks" />
-            <Route element={<MySaleBookDetails />} path="/mySaleBooks/mySaleBookDetails/:id" />
-            <Route element={<MyExchangeBookDetails />} path="/myExchangeBooks/myExchangeBookDetails/:id" />
+            <Route
+              element={<MySaleBookDetails />}
+              path="/mySaleBooks/mySaleBookDetails/:id"
+            />
+            <Route
+              element={<MyExchangeBookDetails />}
+              path="/myExchangeBooks/myExchangeBookDetails/:id"
+            />
+            <Route element={<MyInformation />} path="/myInformation" />
 
             <Route element={<Profile />} path="/profile" />
             <Route element={<SoldBooks />} path="/soldBooks" />

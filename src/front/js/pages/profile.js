@@ -11,9 +11,6 @@ export const Profile = () => {
     actions.getMyExchangeBooks(store.currentUser?.user?.id);
     actions.getAllMyPurchasedBooks(store.currentUser?.user?.id);
     actions.getAllMySoldBooks(store.currentUser?.user?.id);
-
-
-
   }, [store.currentUser?.user?.id]);
 
   return (
@@ -22,7 +19,12 @@ export const Profile = () => {
         <div className="col-md-5">
           <div className="card cardDatos border-0">
             <div className="d-flex overflow-profile justify-content-center containerFoto border-0">
-              <img className="card-img-top card-img-top-profile cardImage" style={{ width: "300px", height: "300px" }} src={store.currentUser?.user?.userImage} alt="{`Portada de ${libro.title}`}" />
+              <img
+                className="card-img-top card-img-top-profile cardImage"
+                style={{ width: "300px", height: "300px" }}
+                src={store.currentUser?.user?.userImage}
+                alt="{`Portada de ${libro.title}`}"
+              />
             </div>
           </div>
         </div>
@@ -41,9 +43,12 @@ export const Profile = () => {
             <h6 className="card-text">
               Región de {store.currentUser?.user?.region}
             </h6>
-            {/* <Link className="btn btn-dark btn buttonPerfil p-1 mt-2">
+            <Link
+              to="/myInformation"
+              className="btn btn-dark btn buttonPerfil p-1 mt-2"
+            >
               Editar Perfil
-            </Link> */}
+            </Link>
           </div>
           <div className="row justify-content-center ">
             <div className="col d-flex justify-content-center ">

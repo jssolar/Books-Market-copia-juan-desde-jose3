@@ -28,38 +28,38 @@ export const Footer = () => {
               </p>
             </div>
             <div className="col-sm-2 col-md col-4 col  text-end">
-              <form>
-                <h5 className="tituloFooter headin5_amrc pt2">
-                  Subscribe to our newsletter
-                </h5>
-                <form className="d-flex" role="search">
-                  <input
-                    id="newsletter1"
-                    className="form-control"
-                    style={{
-                      borderTopLeftRadius: "20px",
-                      borderBottomLeftRadius: "20px",
-                      borderTopRightRadius: "0",
-                      borderBottomRightRadius: "0",
-                    }}
-                    type="search"
-                    placeholder="Email address"
-                    aria-label="Search"
-                  />
-                  <button
-                    className="buttonFooter btn pb-2 px-3"
-                    type="submit"
-                    style={{
-                      borderTopLeftRadius: "0px",
-                      borderBottomLeftRadius: "0px",
-                      borderTopRightRadius: "20px",
-                      borderBottomRightRadius: "20px",
-                    }}
-                  >
-                    Subscribe
-                  </button>
-                </form>
+
+              <h5 className="tituloFooter headin5_amrc pt2">
+                Subscribe to our newsletter
+              </h5>
+              <form className="d-flex" role="search">
+                <input
+                  id="newsletter1"
+                  className="form-control"
+                  style={{
+                    borderTopLeftRadius: "20px",
+                    borderBottomLeftRadius: "20px",
+                    borderTopRightRadius: "0",
+                    borderBottomRightRadius: "0",
+                  }}
+                  type="search"
+                  placeholder="Email address"
+                  aria-label="Search"
+                />
+                <button
+                  className="buttonFooter btn pb-2 px-3"
+                  type="submit"
+                  style={{
+                    borderTopLeftRadius: "0px",
+                    borderBottomLeftRadius: "0px",
+                    borderTopRightRadius: "20px",
+                    borderBottomRightRadius: "20px",
+                  }}
+                >
+                  Subscribe
+                </button>
               </form>
+
             </div>
             <div className="col-sm-2 col-md col-2 col text-end">
               <h5 className="headin5_amrc pt2 tituloFooter"></h5>

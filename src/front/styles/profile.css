@@ -1,15 +1,15 @@
 .containerProfile {
-  background-color:  rgb(146, 197, 211);
+  background-color: rgb(146, 197, 211);
   margin: 3rem;
   padding-top: 10rem;
   padding: 2rem;
   border-radius: 1rem;
   align-content: center;
 }
-.containerFoto{
-  background-color:  rgb(146, 197, 211);
+.containerFoto {
+  background-color: rgb(146, 197, 211);
 }
-.cardImage{
+.cardImage {
   background: transparent;
   border-radius: 50%;
   margin: 0 auto;
@@ -18,31 +18,31 @@
   box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273);
   transition: all 0.7s linear;
 }
-.containerDatosPersonales{
-  background-color:  rgb(146, 197, 211);
+.containerDatosPersonales {
+  background-color: rgb(146, 197, 211);
   margin-bottom: 1rem;
   border: none;
   text-align: center;
 }
-.bienvenida{
+.bienvenida {
   font-size: x-large;
   margin-bottom: 0;
 }
-.itemPerfil{
+.itemPerfil {
   background-color: rgb(179, 146, 27);
   border: none;
-  margin: .5rem;
-  padding: .5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border-radius: 5rem;
 }
-.nombre{
+.nombre {
   text-transform: capitalize;
 }
-.buttonPerfil{
-  background-color:rgb(146, 197, 211);
+.buttonPerfil {
+  background-color: rgb(146, 197, 211);
   max-width: 10rem;
   margin: 0 auto;
-  color:black
+  color: black;
 }
 
 .overflow-profile {
@@ -57,4 +57,16 @@
 
 .card-img-top-profile:hover {
   transform: scale(1.8);
+}
+
+/* MAS ESTILOS EDITOR PERFIL */
+
+.editProfile {
+  background-color: rgb(179, 146, 27);
+  width: 150px;
+  height: 40px;
+}
+.inputProfile {
+  width: 350px;
+  height: 40px;
 }
