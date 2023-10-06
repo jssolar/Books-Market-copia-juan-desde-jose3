@@ -19,6 +19,9 @@
 .navbarItem:hover {
   color: white;
 }
+.navbarItem:active {
+  color: rgb(217, 255, 0);
+}
 
 .img-navbar {
   height: 50px;

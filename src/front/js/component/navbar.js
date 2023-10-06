@@ -150,12 +150,12 @@ export const Navbar = () => {
       {location.pathname !== "/register" &&
         location.pathname !== "/login" &&
         location.pathname !== "/registroLibro" && (
-          <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+          <nav className="nav navbar-expand-lg bg-black  ">
             <div className="container-fluid d-flex justify-content-center">
               <div className="">
                 <Link
                   to="/allBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav-link active  mx-4"
                   aria-current="page"
                 >
                   LIBROS DISPONIBLES
@@ -164,7 +164,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/exchangeBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav-link  mx-4"
                   aria-current="page"
                 >
                   LIBROS PARA INTERCAMBIO
@@ -173,7 +173,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/saleBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav-link  mx-4"
                   aria-current="page"
                 >
                   LIBROS EN VENTA
@@ -182,7 +182,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/enviar_formulario"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav-link  mx-4"
                   aria-current="page"
                 >
                   DONACIONES REALIZADAS
