@@ -88,7 +88,7 @@ export const Footer = () => {
               <ul className="footer_ul_amrc">
                 <li className="nav-item mb-2">
                   <Link
-                    to="/metodoEnvio"
+                    to="/intercambio"
                     className="nav-link p-0 text-white"
                     aria-current="page"
                   >
@@ -106,7 +106,7 @@ export const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <Link
-                    to="/metodoEnvio"
+                    to="#"
                     className="nav-link p-0 text-white"
                     aria-current="page"
                   >
@@ -140,7 +140,7 @@ export const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <Link
-                    to="/metodoEnvio"
+                    to="#"
                     className="nav-link p-0 text-white"
                     aria-current="page"
                   >
@@ -149,7 +149,7 @@ export const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <Link
-                    to="/metodoEnvio"
+                    to="#"
                     className="nav-link p-0 text-white"
                     aria-current="page"
                   >

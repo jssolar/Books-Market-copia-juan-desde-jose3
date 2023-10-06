@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 
@@ -10,22 +9,20 @@ import { Gallery } from "../component/gallery";
 import { Bienvenida } from "../component/bienvenida";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
-	useEffect(() => {
+  const { store, actions } = useContext(Context);
+  useEffect(() => {
+    actions.getLibros();
+    actions.getExchangeBooks();
+    actions.getSaleBooks();
+  }, []);
 
-		actions.getLibros();
-		actions.getExchangeBooks();
-		actions.getSaleBooks();
-	}, []);
-
-
-	return (
-		<div>
-			<Bienvenida />
-			<Banner></Banner>
-			<Categorias></Categorias>
-			<Reviews></Reviews>
-			<Gallery />
-		</div>
-	);
+  return (
+    <div>
+      <Bienvenida />
+      <Banner></Banner>
+      <Categorias></Categorias>
+      <Reviews></Reviews>
+      <Gallery />
+    </div>
+  );
 };

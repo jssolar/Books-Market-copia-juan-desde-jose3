@@ -198,6 +198,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             body: JSON.stringify(newUser),
             headers: { "Content-Type": "application/json" },
           });
+          alert("Registro exitoso!!");
           const data = await response.json();
           console.log("data", data);
           navigate("/login");
@@ -227,7 +228,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (data.access_token) {
             setStore({ currentUser: data });
             sessionStorage.setItem("currentUser", JSON.stringify(data));
-            navigate("/");
+            navigate("/profile");
+            <ToastContainer />;
           } else {
             setStore({
               alert: {

@@ -14,7 +14,7 @@ export const Navbar = () => {
       <nav className="navbarBooks navbar navbar-expand-lg  px-5">
         <div className="container-fluid">
           <div className="col d-flex">
-            <Link to="/" className="nav-link active text-dark fs-4">
+            <Link to="/" className="nav-link brand active  fs-4">
               Books Market
             </Link>
             {/*             <Link
@@ -150,7 +150,7 @@ export const Navbar = () => {
       {location.pathname !== "/register" &&
         location.pathname !== "/login" &&
         location.pathname !== "/registroLibro" && (
-          <nav className="navbar navbar-expand-lg bg-dark mb-4">
+          <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
             <div className="container-fluid d-flex justify-content-center">
               <div className="">
                 <Link

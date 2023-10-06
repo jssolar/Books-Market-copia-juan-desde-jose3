@@ -16,22 +16,22 @@ export const Bienvenida = () => {
                 data-slide-to={0}
                 className="active"
               >
-                <figure>
+                <div>
                   <img
                     src="https://cdn.pixabay.com/photo/2019/05/04/14/22/woman-4178187_1280.jpg"
                     className="img-bienvenida"
                     alt=""
                   />
-                </figure>
+                </div>
               </li>
               <li data-target="#carouselExampleIndicators" data-slide-to={1}>
-                <figure>
+                <div>
                   <img
                     src="https://cdn.pixabay.com/photo/2016/11/18/18/48/book-1836380_1280.jpg"
                     className="img-bienvenida"
                     alt=""
                   />
-                </figure>
+                </div>
               </li>
               <li data-target="#carouselExampleIndicators" data-slide-to={2}>
                 <figure>

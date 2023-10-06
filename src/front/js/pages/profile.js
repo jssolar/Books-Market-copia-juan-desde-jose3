@@ -15,15 +15,15 @@ export const Profile = () => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
-      <div className="row containerProfile">
-        <div className="col-md-5">
+      <div className="row containerProfile ">
+        <div className="col-md-5 ">
           <div className="card cardDatos border-0">
-            <div className="d-flex overflow-profile justify-content-center containerFoto border-0">
+            <div className="d-flex  overflow-profile justify-content-center containerFoto border-0">
               <img
                 className="card-img-top card-img-top-profile cardImage"
                 style={{ width: "300px", height: "300px" }}
                 src={store.currentUser?.user?.userImage}
-                alt="{`Portada de ${libro.title}`}"
+                alt={"{`Portada de ${libro.title}`}"}
               />
             </div>
           </div>

@@ -1,5 +1,6 @@
 .containerProfile {
   background-color: rgb(146, 197, 211);
+  background-color: rgb(146, 197, 211);
   margin: 3rem;
   padding-top: 10rem;
   padding: 2rem;
@@ -8,7 +9,11 @@
 }
 .containerFoto {
   background-color: rgb(146, 197, 211);
+  /* height: 300px;
+  width: 300px;
+  border-radius: 50%; */
 }
+.cardImage {
 .cardImage {
   background: transparent;
   border-radius: 50%;
@@ -20,14 +25,18 @@
 }
 .containerDatosPersonales {
   background-color: rgb(146, 197, 211);
+.containerDatosPersonales {
+  background-color: rgb(146, 197, 211);
   margin-bottom: 1rem;
   border: none;
   text-align: center;
 }
 .bienvenida {
+.bienvenida {
   font-size: x-large;
   margin-bottom: 0;
 }
+.itemPerfil {
 .itemPerfil {
   background-color: rgb(179, 146, 27);
   border: none;
@@ -36,27 +45,49 @@
   border-radius: 5rem;
 }
 .nombre {
+.nombre {
   text-transform: capitalize;
 }
 .buttonPerfil {
   background-color: rgb(146, 197, 211);
+.buttonPerfil {
+  background-color: rgb(146, 197, 211);
   max-width: 10rem;
   margin: 0 auto;
+  color: black;
   color: black;
 }
 
 .overflow-profile {
   overflow: hidden;
   transition: all 0.9s linear;
+  /* border-radius: 50%;
+  width: 100%;
+  height: 100%; */
 }
 
 .card-img-top-profile {
   transform: scale(1);
   transition: all 0.2s ease-in-out;
+  background-color: rgb(146, 197, 211);
 }
 
 .card-img-top-profile:hover {
   transform: scale(1.8);
+  background: transparent;
+  margin: 0 auto;
+}
+
+/* MAS ESTILOS EDITOR PERFIL */
+
+.editProfile {
+  background-color: rgb(179, 146, 27);
+  width: 150px;
+  height: 40px;
+}
+.inputProfile {
+  width: 350px;
+  height: 40px;
 }
 
 /* MAS ESTILOS EDITOR PERFIL */
