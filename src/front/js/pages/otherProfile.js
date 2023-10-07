@@ -1,25 +1,50 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
-import "../../styles/saleBooks.css";
 
-export const SaleBooks = () => {
+import "../../styles/saleBooks.css";
+import "../../styles/bookDetails.css";
+import { Context } from "../store/appContext";
+
+export const OtherProfile = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getLibros();
-    actions.getExchangeBooks();
-    actions.getSaleBooks();
+    actions.getOtherBooks(store.oneBook?.user?.userImage);
   }, []);
 
   return (
-    <div>
-      <div className="container-fluid mt-4">
+    <div className="container d-flex justify-content-center">
+      <div
+        className="border mt-5 mx-3 rounded-5 target shadow-lg"
+        style={{ width: "500px", height: "450px" }}
+      >
+        <div className="d-flex mt-2 justify-content-center border-0">
+          <img
+            className="cardImage border border-black"
+            style={{ width: "280px", height: "280px" }}
+            src={store.otherBooks[0]?.user?.userImage}
+            alt={"{`Portada de ${libro.title}`}"}
+          />
+        </div>
+        <div className="">
+          <h1 className="mt-4 mb-0 fs-2 text-center text-dark fw-medium">
+            {store.otherBooks[0]?.user?.name}{" "}
+            {store.otherBooks[0]?.user?.lastname}!
+          </h1>
+          <h6 className="text-center mt-0">Libros de</h6>
+        </div>
+        <div className="mt-4 text-center">
+          <h6 className="card-text">
+            Región de {store.otherBooks[0]?.user?.region}
+          </h6>
+        </div>
+      </div>
+      <div className="container mt-4">
         <div className="text-center">
-          <h1 className="tituloAll">LIBROS PARA VENTA</h1>
+          <h1 className="titulo-exchange">LIBROS DISPONIBLES</h1>
         </div>
         <div className="d-flex flex-wrap justify-content-center">
-          {store.saleBooks.map((libro, i) => (
+          {store.otherBooks.map((libro, i) => (
             <div
               className="contenedor-card p-0"
               style={{ width: "auto", height: "300" }}

@@ -36,7 +36,7 @@ export const ExchangeBooks = () => {
               <div className="card-body">
                 <h6 className="card-title">{libro.title}</h6>
                 <p className="card-text mb-2">{libro.author}</p>
-                <p className="card-text mb-2">${libro.price}</p>
+                <p className="card-text mb-2">Intercambio</p>
                 <Link
                   to={`/allBooks/bookDetails/${libro.id}`}
                   className="btn btn-dark mb-3 boton-ver-detalles"

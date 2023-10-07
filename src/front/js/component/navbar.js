@@ -11,7 +11,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbarBooks navbar navbar-expand-lg  px-5">
+      <nav className="navbarBooks navbar navbar-expand-lg p-0">
         <div className="container-fluid">
           <div className="col d-flex">
             <Link to="/" className="nav-link brand active  fs-4">

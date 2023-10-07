@@ -5,7 +5,7 @@ import "../../styles/navbar_footer.css";
 export const Footer = () => {
   return (
     <>
-      <footer className="footer">
+      <footer className="footer mt-0 p-0">
         <div className="container bottom_border">
           <div className="row">
             <div className="col-sm-8 col-md col-sm-8 col-2 col me-1">
@@ -28,7 +28,6 @@ export const Footer = () => {
               </p>
             </div>
             <div className="col-sm-2 col-md col-4 col  text-end">
-
               <h5 className="tituloFooter headin5_amrc pt2">
                 Subscribe to our newsletter
               </h5>
@@ -59,7 +58,6 @@ export const Footer = () => {
                   Subscribe
                 </button>
               </form>
-
             </div>
             <div className="col-sm-2 col-md col-2 col text-end">
               <h5 className="headin5_amrc pt2 tituloFooter"></h5>

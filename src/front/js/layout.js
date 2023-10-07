@@ -12,6 +12,7 @@ import RegisterBook from "./pages/registerBook";
 /* CATEGORIAS */
 import { AllBooks } from "./pages/allBooks";
 import { BookDetails } from "./pages/bookDetails";
+
 import { SaleBooks } from "./pages/saleBooks";
 import { ExchangeBooks } from "./pages/exchangeBooks";
 import { DonacionesRealizadas } from "./pages/donacionesRalizadas";
@@ -21,6 +22,7 @@ import Intercambio from "./pages/Intercambio";
 import PurchasedBooks from "./pages/purchasedBooks";
 
 import { Profile } from "./pages/profile";
+import { OtherProfile } from "./pages/otherProfile";
 import SoldBooks from "./pages/soldBooks";
 
 import { MySaleBooks } from "./pages/mySaleBooks";
@@ -81,6 +83,7 @@ const Layout = () => {
             <Route element={<MyInformation />} path="/myInformation" />
 
             <Route element={<Profile />} path="/profile" />
+            <Route element={<OtherProfile />} path="/otherProfile/:id" />
             <Route element={<SoldBooks />} path="/soldBooks" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>

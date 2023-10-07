@@ -374,7 +374,8 @@ def get_book_details(id):
             'price': book.price,
             'photo': book.photo,
             'user_id': book.user_id,
-            'user_name': book.user.name
+            'user_name': book.user.name,
+            'user': book.user.serialize()
         }
 
         # Devuelve los detalles del libro como una respuesta JSON
@@ -409,7 +410,8 @@ def get_user_books(user_id):
     if user is None:
         return jsonify({"error": "Usuario no encontrado"}), 404
     
-    user_books = Book.query.filter_by(user_id=user_id).all()
+    
+    user_books = Book.query.filter_by(user_id=user_id, available=True).all()
     user_books_list = [book.serialize() for book in user_books]
     
     return jsonify(user_books_list), 200

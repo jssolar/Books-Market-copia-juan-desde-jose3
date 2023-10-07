@@ -64,6 +64,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       //ESTADOS PARA CHAT
       idForChat: "",
       idForPurchasedChat: "",
+
+      //OTROS LIBROS
+      otherBooks: [],
     },
 
     actions: {
@@ -664,6 +667,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => {
             setStore({ myChat: data });
             console.log("myChat:", data);
+          })
+          .catch((error) => console.log("error", error));
+      },
+      /// LIBROS DISPONIBLES DE UN USUARIO QUE MIRA A OTRO USUARIO
+      getOtherBooks: (id) => {
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(`http://localhost:3001/api/user_books/${id}`, requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            setStore({ otherBooks: data });
+            console.log("Otros libros disponible");
+            console.log("otherBooks:", data);
           })
           .catch((error) => console.log("error", error));
       },
