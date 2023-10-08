@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -251,6 +254,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("data", data);
           navigate("/login");
         } catch (error) {
+          toast.error("Error al iniciar registrarse");
           console.log(error);
         }
       },
@@ -259,6 +263,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //---- funcion para  login  de usuario------------------------------------------->
       handleSubmitLogin: async (e, navigate) => {
         e.preventDefault();
+        //toast.success("Inicio de sesió nexitoso");
         try {
           const { url, email, password, currentUser } = getStore();
           let info = { email, password, currentUser };
@@ -277,7 +282,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ currentUser: data });
             sessionStorage.setItem("currentUser", JSON.stringify(data));
             navigate("/profile");
-            <ToastContainer />;
           } else {
             setStore({
               alert: {
@@ -286,7 +290,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 textbtn: "Registrarme",
               },
             });
-            alert("Usuario No registrado / Correo o Contraseña incorrectas");
+            // alert("Usuario No registrado / Correo o Contraseña incorrectas");
+            toast.error(
+              "Usuario No registrado / Correo o Contraseña incorrectas"
+            );
           }
         } catch (error) {
           console.log(error);

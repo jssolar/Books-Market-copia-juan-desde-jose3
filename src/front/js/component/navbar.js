@@ -112,13 +112,13 @@ export const Navbar = () => {
               ) : (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-white"
+                    className="nav-link dropdown-toggle text-dark"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    INICIAR SESION / REGISTRARSE
+                    <b>INICIAR SESION / REGISTRARSE</b>
                   </a>
                   <ul className="dropdown-menu bg-dark text-light">
                     <li>
@@ -136,9 +136,6 @@ export const Navbar = () => {
                       >
                         Registrarse
                       </Link>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
                     </li>
                   </ul>
                 </li>

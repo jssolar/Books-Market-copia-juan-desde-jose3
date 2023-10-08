@@ -18,7 +18,7 @@ export const MyExchangeBooks = () => {
           {store.myExchangeBooks.map((libro, i) => (
             <div
               className="contenedor-card p-0"
-              style={{ width: "auto", height: "auto" }}
+              style={{ width: "220px", height: "300px" }}
               key={i}
             >
               <div className="d-flex justify-content-center">

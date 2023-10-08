@@ -37,7 +37,7 @@ class User(db.Model):
         db.session.commit()
 
 
-# <--TABLA LIBRO-------------------------------------------->
+# <-----TABLA LIBRO-------------------------------------------->
 class Book(db.Model):
     __tablename__ = 'book'
     id = db.Column(db.Integer, primary_key=True)
