@@ -14,16 +14,9 @@ export const Navbar = () => {
       <nav className="navbarBooks navbar navbar-expand-lg bg-body-tertiary px-5">
         <div className="container-fluid">
           <div className="col d-flex">
-            <Link to="/" className="nav-link brand active  fs-4">
+            <Link to="/" className="nav-bar brand   fs-4">
               Books Market
             </Link>
-            {/*             <Link
-              to="/profile"
-              className="nav-link active text-dark fs-4"
-              aria-current="page"
-            >
-              <AiTwotoneHome />
-            </Link> */}
           </div>
           {location.pathname !== "/register" &&
             location.pathname !== "/login" &&
@@ -152,7 +145,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/allBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav active mx-4"
                   aria-current="page"
                 >
                   LIBROS EN VENTA
@@ -161,7 +154,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/exchangeBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav active mx-4"
                   aria-current="page"
                 >
                   LIBROS PARA INTERCAMBIO
@@ -170,7 +163,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/saleBooks"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav active mx-4"
                   aria-current="page"
                 >
                   LIBROS MAS VENDIDOS
@@ -179,7 +172,7 @@ export const Navbar = () => {
               <div className="">
                 <Link
                   to="/enviar_formulario"
-                  className="navbarItem nav-link active mx-4"
+                  className="navbarItem nav active mx-4"
                   aria-current="page"
                 >
                   DONACIONES REALIZADAS
