@@ -9,10 +9,14 @@ const RegisterBook = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container contenedor-bookRegister d-flex my-3  p-0">
-      <img src="https://images.unsplash.com/photo-1564316915543-b36a51db1a04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
+    <div className="container contenedor-bookRegister d-flex my-5  p-0">
+      <img
+        className="imagenRegistroLibro"
+        src="https://cdn.pixabay.com/photo/2016/10/22/02/34/bookshop-1759619_1280.jpg"
+        alt=""
+      />
       <form
-        className="form-control shadow form-register-book p-3"
+        className="form-control-sm shadow form-register-book p-3"
         onSubmit={(e) => {
           actions.submitBookImage(e, navigate);
         }}
@@ -23,7 +27,7 @@ const RegisterBook = () => {
           </label>
           <input
             type="text"
-            className="form-control input-register-book"
+            className="form-control input-register-book mb-3"
             id="title"
             aria-describedby="emailHelp"
             placeholder="Ingresa el titulo"
@@ -37,7 +41,7 @@ const RegisterBook = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control mb-3"
             id="author"
             aria-describedby="emailHelp"
             placeholder="Ingresa el autor"
@@ -51,7 +55,7 @@ const RegisterBook = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control  mb-3"
             id="cathegory"
             aria-describedby="emailHelp"
             placeholder="Ingresa la categoria"
@@ -60,14 +64,12 @@ const RegisterBook = () => {
             value={store.cathegory}
             onChange={actions.inputBookValue}
           />
-        </div>
-        <div className="mb-3 ">
           <label htmlFor="number_of_pages" className="form-label">
             Numero de páginas
           </label>
           <input
-            type="text"
-            className="form-control"
+            type="number"
+            className="form-control mb-3"
             id="number_of_pages"
             placeholder="Numero de páginas"
             required
@@ -75,14 +77,12 @@ const RegisterBook = () => {
             value={store.number_of_pages}
             onChange={actions.inputBookValue}
           />
-        </div>
-        <div className="mb-3 ">
           <label htmlFor="description" className="form-label">
             Descripción
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control  mb-3"
             id="description"
             placeholder="Descripción"
             required
@@ -90,22 +90,17 @@ const RegisterBook = () => {
             value={store.description}
             onChange={actions.inputBookValue}
           />
-        </div>
-        <div className="mb-1 "></div>
-        <div className="mb-1 ">
           <label htmlFor="photo" className="form-label">
             Foto
           </label>
           <input
             type="file"
-            className="form-control"
+            className="form-control mb-3"
             id="photo"
             placeholder="Ingresa foto"
             name="photo"
             onChange={(e) => actions.inputBookImage(e.target.files[0])}
           />
-        </div>
-        <div className="mb-3 ">
           <label htmlFor="type" className="form-label">
             Tipo
           </label>
@@ -128,8 +123,8 @@ const RegisterBook = () => {
           Precio
         </label>
         <input
-          type="text"
-          className="form-control"
+          type="number"
+          className="form-control mb-2"
           id="price"
           placeholder="Ingresa precio"
           required

@@ -10,22 +10,21 @@ import "react-toastify/dist/ReactToastify.css";
 const Register = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  <ToastContainer />;
 
   return (
-    <div className=" row md-12 contenedor ">
-      {/* <div className="col-md-3 d-md-block d-none  box contenedor-imagen"> */}
-        <img
-          src="https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_1280.jpg"
-          className="img-register shadow"
-          alt="imagen"
-        />
-  
+    <div className=" row md-12 contenedor-register ">
+      <img
+        src="https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_1280.jpg"
+        className="img-register shadow"
+        alt="imagen"
+      />
+
       <div className="col-md-9 contenedor-form  ">
         <form
           className="form-card shadow"
           onSubmit={(e) => {
             toast.success("Registro exitoso!, por favor inicia sesión");
-
             actions.submitUserImage(e, navigate);
           }}
         >
@@ -171,7 +170,7 @@ const Register = () => {
           </button>
         </form>
       </div>
-          {/* </div> */}
+      {/* </div> */}
     </div>
   );
 };

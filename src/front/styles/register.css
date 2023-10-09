@@ -2,7 +2,7 @@
 body {
   background-color: #f5f5f5;
 }
-.contenedor {
+.contenedor-register {
   margin-top: 4rem !important;
   display: flex;
   flex-direction: row;

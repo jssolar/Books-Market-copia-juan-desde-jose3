@@ -38,6 +38,7 @@ export const Navbar = () => {
                   <button
                     className="btn btn-dark pb-2 px-3"
                     type="submit"
+                    aria-expanded="false"
                     style={{
                       borderTopLeftRadius: "0px",
                       borderBottomLeftRadius: "0px",
@@ -55,7 +56,7 @@ export const Navbar = () => {
               {location.pathname !== "/register" &&
                 location.pathname !== "/login" &&
                 location.pathname !== "/registroLibro" && (
-                  <div className="nav-item mt-3 me-2">
+                  <div className="nav-item nombre-navbar mt-3 me-3">
                     {store.currentUser?.user?.name}
                   </div>
                 )}
@@ -88,7 +89,7 @@ export const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" className="dropdown-item">
+                      <Link to="profile" className="dropdown-item">
                         {store.currentUser?.user?.name}
                       </Link>
                     </li>

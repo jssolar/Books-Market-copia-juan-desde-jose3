@@ -35,7 +35,7 @@ const PurchasedBooks = () => {
               return (
                 <div
                   className="card shadow-sm m-3"
-                  style={{ width: "220px", height: "300" }}
+                  style={{ width: "220px", height: "300px" }}
                   key={i}
                 >
                   <div className="d-flex justify-content-center">

@@ -232,8 +232,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       submitRegister: (e, navigate) => {
+        //********************************************************************* */
         e.preventDefault();
-
         if (getStore().newUser.password === getStore().newUser.rep_password) {
           getActions().saveUser(navigate);
         } else {
@@ -249,21 +249,27 @@ const getState = ({ getStore, getActions, setStore }) => {
             body: JSON.stringify(newUser),
             headers: { "Content-Type": "application/json" },
           });
-          alert("Registro exitoso!!");
-          const data = await response.json();
-          console.log("data", data);
-          navigate("/login");
+          if (response.ok) {
+            toast.success("Registro exitoso!!");
+            alert("Registro exitoso!!");
+            const data = await response.json();
+            console.log("data", data);
+            navigate("#");
+          } else {
+            throw Error("Error al registrar");
+          }
         } catch (error) {
-          toast.error("Error al iniciar registrarse");
-          console.log(error);
+          alert("Error al iniciar registrarse" + error.message);
+          console.error(error);
         }
       },
       //----------< Login usuario >---------------------------------------------->
 
       //---- funcion para  login  de usuario------------------------------------------->
       handleSubmitLogin: async (e, navigate) => {
+        //********************************************************************************************************** */
         e.preventDefault();
-        //toast.success("Inicio de sesió nexitoso");
+        // toast.success("Inicio de sesió nexitoso");
         try {
           const { url, email, password, currentUser } = getStore();
           let info = { email, password, currentUser };
@@ -290,7 +296,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 textbtn: "Registrarme",
               },
             });
-            // alert("Usuario No registrado / Correo o Contraseña incorrectas");
             toast.error(
               "Usuario No registrado / Correo o Contraseña incorrectas"
             );
