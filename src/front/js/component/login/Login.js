@@ -56,7 +56,10 @@ const Login = () => {
                 onChange={(e) => actions.handleChangeLogin(e)}
               />
             </div>
-            <div className="d-flex justify-content-center">
+            <div
+              className="d-flex justify-content-center mb-2
+            "
+            >
               <button
                 type="submit"
                 className="buttonLogin btn btn-primary  p-2"
@@ -64,10 +67,10 @@ const Login = () => {
                 Iniciar Sesión
               </button>
             </div>
-            <div className="d-flex justify-content-center">
-              <button className="buttonLogin btn btn-primary  ">
-                <Link to="/register">Registrarse</Link>
-              </button>
+            <div className="d-flex justify-content-center mt-0 pt-0">
+              <Link to="/register" className="text-decoration-underline">
+                ¿ Registrarse ?
+              </Link>
             </div>
           </form>
         </div>
