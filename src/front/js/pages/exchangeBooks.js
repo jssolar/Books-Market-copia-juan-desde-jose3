@@ -41,7 +41,7 @@ export const ExchangeBooks = () => {
                   <p className="text-center text-capitalize mb-1">
                     {libro.author}
                   </p>
-                  <p className="text-center  mb-3">{libro.price}</p>
+                  <p className="text-center  mb-3">Intercambio</p>
                 </div>
                 <div className="d-flex justify-content-center">
                   <Link

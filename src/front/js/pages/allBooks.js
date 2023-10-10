@@ -41,8 +41,7 @@ export const AllBooks = () => {
                 <p className="text-center text-capitalize mb-1">
                   {libro.author}
                 </p>
-                <p className="text-center  mb-3">{libro.price}</p>
-                <p className="text-center  mb-3">{store.oneBook?.user_name}</p>
+                <p className="text-center  mb-3">{libro.type}</p>
               </div>
               <div className="d-flex justify-content-center">
                 <Link

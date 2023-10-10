@@ -1,9 +1,7 @@
+import { ToastContainer, toast } from "react-toastify";
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
@@ -22,11 +20,11 @@ import { DonacionesRealizadas } from "./pages/donacionesRalizadas";
 
 import BookReviews from "./pages/BookReviews";
 import Intercambio from "./pages/Intercambio";
-import PurchasedBooks from "./pages/purchasedBooks";
+import { PurchasedBooks } from "./pages/purchasedBooks";
+import { SoldBooks } from "./pages/soldBooks";
 
 import { Profile } from "./pages/profile";
 import { OtherProfile } from "./pages/otherProfile";
-import SoldBooks from "./pages/soldBooks";
 
 import { MySaleBooks } from "./pages/mySaleBooks";
 import { MySaleBookDetails } from "./pages/mySaleBookDetails";

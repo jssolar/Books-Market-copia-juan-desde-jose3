@@ -19,8 +19,6 @@ export const Home = () => {
   return (
     <div>
       <Bienvenida />
-      <Banner></Banner>
-      <Categorias></Categorias>
       <Reviews></Reviews>
       <Gallery />
     </div>

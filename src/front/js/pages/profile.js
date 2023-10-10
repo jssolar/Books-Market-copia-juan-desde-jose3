@@ -53,7 +53,7 @@ export const Profile = () => {
           <div className="row justify-content-center ">
             <div className="col d-flex justify-content-center ">
               <Link to="/mySaleBooks" className="btn btn-dark w-100 itemPerfil">
-                Libros en venta
+                Mis libros en venta
               </Link>
             </div>
             <div className="col d-flex justify-content-center ">
@@ -61,7 +61,7 @@ export const Profile = () => {
                 to="/myExchangeBooks"
                 className="btn btn-dark w-100 itemPerfil"
               >
-                Libros en Intercambio
+                Mis libros en Intercambio
               </Link>
             </div>
           </div>
@@ -71,12 +71,12 @@ export const Profile = () => {
                 to="/purchasedBooks"
                 className="btn btn-dark w-100 itemPerfil"
               >
-                Compras realizadas
+                Mis compras realizadas
               </Link>
             </div>
             <div className="col d-flex justify-content-center ">
               <Link to="/soldBooks" className="btn btn-dark w-100 itemPerfil">
-                Ventas realizadas
+                Mis ventas realizadas
               </Link>
             </div>
           </div>

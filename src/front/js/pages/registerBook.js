@@ -8,9 +8,6 @@ const RegisterBook = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-  const { store, actions } = useContext(Context);
-  const navigate = useNavigate();
-
   return (
     <div className="container contenedor-bookRegister d-flex my-5  p-0">
       <img
@@ -134,6 +131,8 @@ const RegisterBook = () => {
           name="price"
           value={store.price}
           onChange={actions.inputBookValue}
+          disabled={store.type === "Intercambio" || store.type === "Donación"}
+          min="0"
         />
         <button type="" className="btn boton my-3">
           Publicar
