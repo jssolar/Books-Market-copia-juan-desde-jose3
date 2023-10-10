@@ -15,7 +15,12 @@ export const Navbar = () => {
         <div className="container-fluid">
           <div className="col d-flex">
             <Link to="/" className="nav-link brand active  fs-4">
-              Books Market
+              <img
+                className="m-0 p-0"
+                style={{ width: "200px" }}
+                src="https://res.cloudinary.com/dxaialbs0/image/upload/v1696956461/user_image/logo_final_presentacion-removebg-previewFIANL_zhpcmq.png"
+                alt="img-perfil"
+              />
             </Link>
             {/*             <Link
               to="/profile"
@@ -62,8 +67,9 @@ export const Navbar = () => {
               {location.pathname !== "/register" &&
                 location.pathname !== "/login" &&
                 location.pathname !== "/registroLibro" && (
-                  <div className="nav-item mt-3 me-2">
-                    {store.currentUser?.user?.name}
+                  <div className="nav-item mt-3 me-4 fs-5 fw-medium">
+                    {store.currentUser?.user?.name}{" "}
+                    {store.currentUser?.user?.lastname}
                   </div>
                 )}
 
@@ -149,6 +155,7 @@ export const Navbar = () => {
       </nav>
       {location.pathname !== "/register" &&
         location.pathname !== "/login" &&
+        location.pathname !== "/profile" &&
         location.pathname !== "/registroLibro" && (
           <nav className="nav navbar-expand-lg bg-black  ">
             <div className="container-fluid d-flex justify-content-center">

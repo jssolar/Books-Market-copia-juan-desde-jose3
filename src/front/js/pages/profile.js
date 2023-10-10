@@ -35,19 +35,11 @@ export const Profile = () => {
             </p>
           </div>
           <div className="row card-body containerDatosPersonales">
-            <h5 className="card-title nombre">
-              {store.currentUser?.user?.name}{" "}
-              {store.currentUser?.user?.lastname}{" "}
-            </h5>
-            <h6 className="card-text">{store.currentUser?.user?.email}</h6>
-            <h6 className="card-text">
-              Región de {store.currentUser?.user?.region}
-            </h6>
             <Link
               to="/myInformation"
               className="btn btn-dark btn buttonPerfil p-1 mt-2"
             >
-              Editar Perfil
+              Mi Perfíl
             </Link>
           </div>
           <div className="row justify-content-center ">
