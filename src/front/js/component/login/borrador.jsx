@@ -1,177 +1,110 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../store/appContext";
-import "../../styles/register.css";
-import imgRegister from "../../img/register.jpg";
 
-const Register = () => {
+import { Context } from "../store/appContext";
+
+export const MyBuyDetails = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    actions.getMyOnePurchasedBook(id);
+    actions.getMyMessageForBook(store.myOneBook[0]?.id)
+
+
+  }, [id, store.myOneBook[0]?.id]);
 
   return (
-
-    <div className="container-fluid">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <form
-            className="form-control shadow p-3"
-            onSubmit={(e) => {
-              actions.submitUserImage(e, navigate);
-            }}
-          >
-            <div className="col-md-6">
-              <div className="card card0">
-                <div className="row rowForm">
-                  <img
-                    src={imgRegister}
-                    className="imagenEegister"
-                    alt="img-register"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="form" className="form-label">
-                Nombre
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                aria-describedby="emailHelp"
-                placeholder="Ingresa tu nombre"
-                maxLength="20"
-                minLength="3"
-                required
-                name="name"
-                value={store.name}
-                onChange={actions.inputUserValue}
-              />
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Apellido
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="lastname"
-                aria-describedby="emailHelp"
-                placeholder="Ingresa tu apellido"
-                maxLength="20"
-                minLength="3"
-                required
-                name="lastname"
-                value={store.lastname}
-                onChange={actions.inputUserValue}
-              />
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                E-mail
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                aria-describedby="emailHelp"
-                placeholder="Ingresa tu e-mail"
-                required
-                name="email"
-                value={store.email}
-                onChange={actions.inputUserValue}
-              />
-            </div>
-            <div className="mb-3 ">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Contraseña"
-                required
-                name="password"
-                value={store.password}
-                onChange={actions.inputUserValue}
-              />
-            </div>
-            <div className="mb-3 ">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Repetir Contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="rep_password"
-                placeholder="Repita contraseña"
-                required
-                name="rep_password"
-                value={store.rep_password}
-                onChange={actions.inputUserValue}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="region">
-                Región
-              </label>
-              <select
-                className="form-select"
-                id="region"
-                required
-                name="region"
-                value={store.region.toString()}
-                onChange={actions.inputUserValue}
-                multiple={false}
-              >
-                <option value="">Selecciona tu región</option>
-                <option value="Arica y Parinacota">Arica y Parinacota</option>
-                <option value="Tarapacá">Tarapacá</option>
-                <option value="Antofagasta">Antofagasta</option>
-                <option value="Atacama">Atacama</option>
-                <option value="Coquimbo">Coquimbo</option>
-                <option value="Valparaíso">Valparaíso</option>
-                <option value="O'Higgins">O'Higgins</option>
-                <option value="Maule">Maule</option>
-                <option value="Ñuble">Ñuble</option>
-                <option value="Biobío">Biobío</option>
-                <option value="La Araucanía">La Araucanía</option>
-                <option value="Los Ríos">Los Ríos</option>
-                <option value="Los Lagos">Los Lagos</option>
-                <option value="Aysén">Aysén</option>
-                <option value="Magallanes">Magallanes</option>
-                <option value="Metropolitana">Metropolitana</option>
-              </select>
-            </div>
-            <div className="mb-3 ">
-              <label htmlFor="photo" className="form-label">
-                Foto de perfil
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                id="userImage"
-                placeholder="Sube foto"
-                name="userImage"
-                onChange={(e) => actions.inputUserImage(e.target.files[0])}
-              />
-            </div>
-            <div className="my-3 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="Check1"
-                required
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Acepto términos y condiciones
-              </label>
-            </div>
-            <button type="submit" className="btn btn-primary my-3">
-              Registrarse
-            </button>
-          </form>
+    <div>
+      <div className="container-fluid d-flex">
+        <div
+          className="card shadow-sm m-3"
+          style={{ width: "300px", height: "100%" }}
+        >
+          <img
+            src={store.myOneBook[0]?.book?.photo}
+            className="card-img-top"
+            alt="Hollywood Sign on The Hill"
+            style={{ width: "100%", height: "400px" }}
+          />
         </div>
+        <div className="m-3 mt-5 mb-5">
+          <h1>{store.myOneBook[0]?.book?.title}</h1>
+          <hr className="dropdown-divider" />
+          <br></br>
+          <div className="d-flex  "   >
+            <div className="p-0 " >
+              <p className="text-dark mb-3">{store.myOneBook[0]?.book?.author}</p>
+              <p className="text-dark mb-3">{store.myOneBook[0]?.book?.description}</p>
+              <p className="text-dark mb-3">{store.myOneBook[0]?.book?.user_name}</p>
+              <p>vendedor: {store.myOneBook[0]?.seller_id}</p>
+              <p>id del libro {store.myOneBook[0]?.book_id}</p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-3 ms-2  ">
+          <div className="border rounded">
+            <div className="border rounded m-2 d-flex flex-column" style={{ width: "500px", maxHeight: "280px", overflowY: "auto" }}>
+              {store.myChat.map((message, index) => (
+                <div className="d-flex flex-column" key={index}>
+                  {message.sender_id === store.currentUser.user.id ? (
+                    <div className="align-self-start text-primary m-2">
+                      <p><strong>Tú:</strong> {message.message_text}</p>
+                    </div>
+                  ) : (
+                    <div className="align-self-end text-success m-2">
+                      <p>{message.message_text}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+          </div>
+          <div>
+
+            <form className="form-control shadow p-3" onSubmit={(e) => {
+              actions.inputMessage1(
+                store.currentUser?.user?.id,
+                store.myOneBook[0]?.seller_id,
+                store.myOneBook[0]?.book_id,
+                store.message_text,
+                store.myOneBook[0]?.id,
+                id,
+                store.myOneBook[0]?.id,
+                e,
+              )
+
+            }}>
+              <div className="mb-3">
+                <label htmlFor="message_text" className="form-label">
+                  Titulo
+                </label>
+                <input
+                  type="text"
+                  className="form-control mb-0"
+                  id="message_text"
+                  aria-describedby="emailHelp"
+                  placeholder="Ingresa el mensaje"
+                  required
+                  name="message_text"
+                  value={store.message_text}
+                  onChange={actions.inputTextArea}
+                />
+              </div>
+              <button type="" className="btn btn-success my-3" >
+                Enviar
+              </button>
+            </form>
+
+          </div>
+        </div>
+
+
       </div>
     </div>
   );
 };
-export default Register;

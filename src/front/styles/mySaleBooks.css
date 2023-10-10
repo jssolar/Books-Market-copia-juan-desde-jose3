@@ -10,7 +10,7 @@
 
 .allbooks-img {
   border-radius: 8px;
-  /* width: 100%; */
+  width: 220px;
   height: 300px;
   box-shadow: 0px 0px 16px #000000c0;
   object-fit: cover;
@@ -23,16 +23,5 @@
 .boton-ver-detalles {
   background-color: rgb(179, 146, 27);
   border: none;
-  margin: 0;
+  justify-content: center;
 }
-
-/* .boton-ver-detalles:hover { */
-/* background-color: #008fb3; */
-/* background-color: rgb(146, 197, 211); */
-/* transition: 0.5s ease-in-out; */
-/* color: rgba(0, 0, 0, 0.4); */
-/* border-radius: 10rem; */
-/* box-shadow: 0px 0px 16px #000000c0; */
-/* color: rgb(255, 255, 255); */
-/* z-index: -1; */
-/* } */
