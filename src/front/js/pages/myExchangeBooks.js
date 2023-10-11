@@ -38,11 +38,11 @@ export const MyExchangeBooks = () => {
                   <b>{libro.title}</b>
                 </p>
                 <p className="text-center mb-1">{libro.author}</p>
-                <p className="text-center  mb-3">{libro.price}</p>
+                <p className="text-center  mb-3">Intercambio</p>
               </div>
               <div className="d-flex justify-content-center">
                 <Link
-                  to={`/allBooks/bookDetails/${libro.id}`}
+                  to={`/myExchangeBooks/myExchangeBookDetails/${libro.id}`}
                   className="btn btn-dark mb-3 boton-ver-detalles"
                 >
                   Ver detalles

@@ -42,7 +42,7 @@ export const MySaleBooks = () => {
               </div>
               <div className="d-flex justify-content-center">
                 <Link
-                  to={`/allBooks/bookDetails/${libro.id}`}
+                  to={`/mySaleBooks/mySaleBookDetails/${libro.id}`}
                   className="btn btn-dark mb-3 boton-ver-detalles"
                 >
                   Ver detalles

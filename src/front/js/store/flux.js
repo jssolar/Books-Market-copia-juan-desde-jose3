@@ -34,6 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       //ESTADO PARA GUARDAR DETALLE DE UN LIBRO
       oneBook: [],
+
       //ESTADOS INPUT REGISTRO LIBRO CON FOTOS
       title: [],
       author: [],
@@ -43,6 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       price: 0,
       photo: null,
       type: [],
+
       //ESTADOS INPUT REGISTRO USUARIO CON FOTOS
       name: [],
       lastname: [],
@@ -52,6 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       region: [],
       city: [],
       userImage: null,
+
       // ESTADOS MENSAJE ENTRE USUARIOS
       sender_id: [],
       receiver_id: [],
@@ -400,6 +403,35 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      /// ELIMINAR UN LIBRO
+      deleteBook: async (id, navigate) => {
+        try {
+          const { url, currentUser } = getStore();
+          if (!currentUser) {
+            console.error("Usuario no autenticado");
+            return;
+          }
+
+          const token = currentUser.access_token;
+
+          const response = await fetch(`${url}/api/deleteBook/${id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.status === 200) {
+            navigate("/profile");
+            console.error("Libro eliminado con exito:");
+          } else {
+            console.error("Error al eliminar el libro:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error en la solicitud DELETE:", error);
+        }
+      },
+
       //REGISTRO DE USUARIO CON FOTO
       ///GUARDAR VALOR INPUT IMAGEN USUARIO
       inputUserImage: (file) => {
@@ -477,6 +509,43 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+
+      ////EDITAR UN USUARIO
+      updateProfile: async (id, editedProfile, navigate) => {
+        try {
+          const { url, currentProfile } = getStore();
+          const token = currentProfile ? currentProfile.access_token : "";
+          const formData = new FormData();
+
+          // Agrega los campos editados al FormData
+          for (const key in editedProfile) {
+            formData.append(key, editedProfile[key]);
+          }
+
+          const response = await fetch(`${url}/api/edit_Profile/${id}`, {
+            method: "PUT",
+            body: formData,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response);
+
+          if (response.status === 200) {
+            navigate("/");
+            getActions().getLibros();
+            console.log("Perfil actualizado con éxito.");
+          } else {
+            console.error(
+              "Error al actualizar el perfil:",
+              response.statusText
+            );
+          }
+        } catch (error) {
+          console.error("Error en la solicitud PUT:", error);
+        }
+      },
+
       ///CAMBIO DE DISPONIBILIDAD DE LIBRO
       putAvailableBook: async (id, navigate) => {
         try {
@@ -697,6 +766,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("otherBooks:", data);
           })
           .catch((error) => console.log("error", error));
+      },
+
+      ///FUNCION PARA MAPEAR DE FORMA ALEATORIA
+      shuffleArray: (array) => {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; ///Destructuring
+        }
+        return newArray;
       },
     },
   };

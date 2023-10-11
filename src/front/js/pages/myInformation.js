@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/profile.css";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/profile.css";
 
 export const MyInformation = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false); // Estado para controlar si estamos en modo edición
   const [editedProfile, setEditedProfile] = useState({}); // Estado para mostar los datos del perfil
 
@@ -60,7 +64,7 @@ export const MyInformation = () => {
               ) : (
                 <button
                   type="button"
-                  class=" btn btn-dark btn-sm"
+                  className=" btn btn-dark btn-sm"
                   onClick={handleEditClick}
                 >
                   Editar

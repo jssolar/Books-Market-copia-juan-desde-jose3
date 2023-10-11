@@ -9,13 +9,14 @@ export const OtherProfile = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
+    
     actions.getOtherBooks(store.oneBook?.user?.userImage);
   }, []);
 
   return (
     <div className="container d-flex justify-content-center">
       <div
-        className="border mt-5 mx-3 rounded-5 target shadow-lg"
+        className="user-card border mt-5 mx-3 rounded-5 target shadow-lg"
         style={{ width: "500px", height: "450px" }}
       >
         <div className="d-flex mt-2 justify-content-center border-0">

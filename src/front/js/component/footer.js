@@ -102,15 +102,6 @@ export const Footer = () => {
                     Guía donaciones
                   </Link>
                 </li>
-                <li className="nav-item mb-2">
-                  <Link
-                    to="#"
-                    className="nav-link p-0 text-white"
-                    aria-current="page"
-                  >
-                    Guía libros gratis
-                  </Link>
-                </li>
               </ul>
             </div>
             <div className="col-sm-4 col-md col-2 col text-end">
@@ -134,24 +125,6 @@ export const Footer = () => {
                     aria-current="page"
                   >
                     Nuestro Team
-                  </Link>
-                </li>
-                <li className="nav-item mb-2">
-                  <Link
-                    to="#"
-                    className="nav-link p-0 text-white"
-                    aria-current="page"
-                  >
-                    Contactanos
-                  </Link>
-                </li>
-                <li className="nav-item mb-2">
-                  <Link
-                    to="#"
-                    className="nav-link p-0 text-white"
-                    aria-current="page"
-                  >
-                    Preguntas frecuentes
                   </Link>
                 </li>
               </ul>

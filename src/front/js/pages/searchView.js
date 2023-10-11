@@ -1,25 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/allBooks.css";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-export const AllBooks = () => {
+const SearchView = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { query } = useParams();
 
-  useEffect(() => {
-    actions.getLibros();
-    actions.getExchangeBooks();
-    actions.getSaleBooks();
-  }, []);
+  const filteredBooks = store.showBooks.filter(
+    (libro) =>
+      libro.title.toLowerCase().includes(query.toLowerCase()) ||
+      libro.author.toLowerCase().includes(query.toLowerCase())
+  );
+
+  useEffect(() => {}, []);
 
   return (
     <div className="container-fluid mt-4">
       <div className="text-center">
-        <h1 className="tituloAll">LIBROS EN VENTA</h1>
+        <h1 className="tituloAll">Coincidencias Encontradas para {query}</h1>
       </div>
       <div className="d-flex flex-wrap justify-content-center">
-        {actions.shuffleArray(store.showBooks).map((libro, i) => (
+        {filteredBooks.map((libro, i) => (
           <div
             className="contenedor-card p-0"
             style={{ width: "220px", height: "300" }}
@@ -60,3 +66,4 @@ export const AllBooks = () => {
     </div>
   );
 };
+export default SearchView;

@@ -15,12 +15,18 @@ export const Profile = () => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
-      <div className="row containerProfile ">
-        <div className="col-md-5 ">
-          <div className="card cardDatos border-0">
-            <div className="d-flex  overflow-profile justify-content-center containerFoto border-0">
+      <div className="row containerProfile p-4 px-0" style={{ width: "950px" }}>
+        <div className="col-md-5 mx-0 px-0" style={{ width: "350px" }}>
+          <div
+            className="card cardDatos border-0 containerFoto"
+            style={{ width: "350px" }}
+          >
+            <div
+              className="d-flex px-0 overflow-profile justify-content-center containerFoto border-0"
+              style={{ width: "350px" }}
+            >
               <img
-                className="card-img-top card-img-top-profile cardImage"
+                className="card-img-top mx-0 card-img-top-profile cardImage"
                 style={{ width: "300px", height: "300px" }}
                 src={store.currentUser?.user?.userImage}
                 alt={"{`Portada de ${libro.title}`}"}
@@ -28,7 +34,7 @@ export const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-7 text-center">
+        <div className="col-md-7 text-center" style={{ width: "550px" }}>
           <div className="row">
             <p className="bienvenida">
               Nos alegra que estes aquí, {store.currentUser?.user?.name}!{" "}
@@ -36,7 +42,7 @@ export const Profile = () => {
           </div>
           <div className="row card-body containerDatosPersonales">
             <Link
-              to="/myInformation"
+              to={`/myInformation/${store.currentUser?.user?.id}`}
               className="btn btn-dark btn buttonPerfil p-1 mt-2"
             >
               Mi Perfíl

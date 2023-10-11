@@ -2,8 +2,7 @@
   background-color: rgb(146, 197, 211);
   background-color: rgb(146, 197, 211);
   margin: 3rem;
-  padding-top: 10rem;
-  padding: 2rem;
+
   border-radius: 1rem;
   align-content: center;
 }
@@ -80,10 +79,17 @@
 
 .editProfile {
   background-color: rgb(179, 146, 27);
-  width: 150px;
+  width: 200px;
   height: 40px;
 }
 .inputProfile {
-  width: 350px;
+  width: 550px;
   height: 40px;
+}
+
+.largeText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 550px;
 }

@@ -1,13 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 import "../../styles/navbar_footer.css";
 import { AiTwotoneHome } from "react-icons/ai";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
   const location = useLocation(); // renderizar con ruta
   console.log(location.pathname);
+
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchValue.trim() !== "") {
+      // Redirigir al usuario a la vista de resultados con el valor de búsqueda
+      navigate(`/searchView/${searchValue}`);
+      setSearchValue("");
+    }
+  };
 
   return (
     <div>
@@ -22,19 +37,16 @@ export const Navbar = () => {
                 alt="img-perfil"
               />
             </Link>
-            {/*             <Link
-              to="/profile"
-              className="nav-link active text-dark fs-4"
-              aria-current="page"
-            >
-              <AiTwotoneHome />
-            </Link> */}
           </div>
           {location.pathname !== "/register" &&
             location.pathname !== "/login" &&
             location.pathname !== "/registroLibro" && (
               <div className="col py-1">
-                <form className="d-flex" role="search">
+                <form
+                  className="d-flex"
+                  role="search"
+                  onSubmit={handleSearchSubmit}
+                >
                   <input
                     className="form-control"
                     style={{
@@ -46,6 +58,8 @@ export const Navbar = () => {
                     type="search"
                     placeholder="Buscar"
                     aria-label="Search"
+                    value={searchValue}
+                    onChange={handleSearchChange}
                   />
                   <button
                     className="btn btn-dark pb-2 px-3"
@@ -188,7 +202,7 @@ export const Navbar = () => {
               </div>
               <div className="">
                 <Link
-                  to="/enviar_formulario"
+                  to="/donacionesRealizadas"
                   className="navbarItem nav-link  mx-4"
                   aria-current="page"
                 >

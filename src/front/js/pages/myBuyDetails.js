@@ -19,13 +19,10 @@ export const MyBuyDetails = () => {
   return (
     <div>
       <div className="container-fluid d-flex justify-content-evenly">
-        <div
-          className="card shadow-sm m-3"
-          style={{ width: "300px", height: "100%" }}
-        >
+        <div className=" m-3" style={{ width: "300px", height: "100%" }}>
           <img
             src={store.myOneBook[0]?.book?.photo}
-            className="card-img-top"
+            className="rounded-4 shadow pe-0"
             alt="Hollywood Sign on The Hill"
             style={{ width: "100%", height: "400px" }}
           />

@@ -67,14 +67,14 @@ export const BookDetails = () => {
           </p>
 
           <div className="d-flex justify-content-center mt-5">
-            <div className="me-3">
-              <p className="text-dark mx-5 text-center fw-medium">
+            <div className="me-3 ">
+              <p className="text-dark text-center fw-medium ">
                 {store.oneBook?.cathegory}
               </p>
               <p className="text-dark mx-5 text-center ">Categoria</p>
             </div>
             <div className="me-3">
-              <p className="text-dark mx-5 text-center fw-medium">
+              <p className="text-dark  text-center fw-medium">
                 {store.oneBook?.number_of_pages}
               </p>
               <p className="text-dark mx-5 text-center">Páginas</p>
@@ -84,7 +84,7 @@ export const BookDetails = () => {
                 <p className="mx-5 text-center text-danger fw-medium">
                   Intercambio
                 </p>
-                <p className="text-dark mx-5 text-center">Precio</p>
+                <p className="text-dark  text-center">Precio</p>
               </div>
             ) : (
               <div className="me-3">
@@ -101,16 +101,22 @@ export const BookDetails = () => {
               type="button"
               className="btn btn-sm btn-grad "
               onClick={() => {
-                actions.putAvailableBook(store.oneBook?.id, navigate);
-                actions.inputShopping(
-                  store.oneBook?.user_id,
-                  store.currentUser?.user?.id,
-                  store.oneBook?.id,
-                  formattedDate
-                );
-                actions.getLibros();
-                actions.getExchangeBooks();
-                actions.getSaleBooks();
+                if (
+                  window.confirm(
+                    "¿Estás seguro de que deseas comprar este libro?"
+                  )
+                ) {
+                  actions.putAvailableBook(store.oneBook?.id, navigate);
+                  actions.inputShopping(
+                    store.oneBook?.user_id,
+                    store.currentUser?.user?.id,
+                    store.oneBook?.id,
+                    formattedDate
+                  );
+                  actions.getLibros();
+                  actions.getExchangeBooks();
+                  actions.getSaleBooks();
+                }
               }}
             >
               Confirmar compra

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import injectContext from "./store/appContext";
 
 import { Home } from "./pages/home";
 /* REGISTROS */
@@ -16,7 +17,7 @@ import { BookDetails } from "./pages/bookDetails";
 
 import { SaleBooks } from "./pages/saleBooks";
 import { ExchangeBooks } from "./pages/exchangeBooks";
-import { DonacionesRealizadas } from "./pages/donacionesRalizadas";
+import { DonacionesRealizadas } from "./pages/donacionesRealizadas";
 
 import BookReviews from "./pages/BookReviews";
 import Intercambio from "./pages/Intercambio";
@@ -35,10 +36,11 @@ import { MySoldDetails } from "./pages/mySoldDetails";
 import { SobreNosotros } from "./pages/sobreNosotros";
 import { NuestraHistoria } from "./pages/nuestraHistoria";
 import { ComoDonar } from "./pages/comoDonar";
-import injectContext from "./store/appContext";
+
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { MyInformation } from "./pages/myInformation";
+import SearchView from "./pages/searchView";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "/";
@@ -81,12 +83,17 @@ const Layout = () => {
               element={<MyExchangeBookDetails />}
               path="/myExchangeBooks/myExchangeBookDetails/:id"
             />
-            <Route element={<MyInformation />} path="/myInformation" />
+            <Route element={<MyInformation />} path="/myInformation/:id" />
 
             <Route element={<Profile />} path="/profile" />
             <Route element={<OtherProfile />} path="/otherProfile/:id" />
             <Route element={<SoldBooks />} path="/soldBooks" />
+            <Route
+              element={<DonacionesRealizadas />}
+              path="/donacionesRealizadas"
+            />
             <Route element={<h1>Not found!</h1>} />
+            <Route element={<SearchView />} path="/searchView/:query" />
           </Routes>
           <Footer />
         </ScrollToTop>

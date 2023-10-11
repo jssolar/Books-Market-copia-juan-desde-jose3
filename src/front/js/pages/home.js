@@ -19,7 +19,6 @@ export const Home = () => {
   return (
     <div>
       <Bienvenida />
-      <Reviews></Reviews>
       <Gallery />
     </div>
   );

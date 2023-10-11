@@ -157,7 +157,38 @@ def profile():
     user = User.query.get(id)
     return jsonify({"message": "ruta  privada", "user": user.email}), 200
 
+###EDITAR USUARIO
+@api.route('/edit_Profile/<int:user_id>', methods=['PUT'])
+@jwt_required()
+def edit_user(user_id):
+    user_id = get_jwt_identity()  # Obtener el ID del usuario actual
+    user = User.query.get(user_id)
 
+    if not user:
+        return jsonify({"error": "Usuario no encontrado."}), 403
+
+    # Obtener los datos actualizados del libro desde la solicitud formdata
+    name = request.form.get('name', user.name)
+    lastname = request.form.get('lastname', user.lastname)
+    email = request.form.get('email', user.email)
+    region = request.form.get('region', user.region)    
+    
+
+    # Actualizar los campos del libro con los datos proporcionados
+    user.name = name
+    user.lastname = lastname
+    user.email = email
+    user.region = region    
+
+    # Actualizar la foto si se proporciona una nueva
+   
+
+    # Guardar los cambios en la base de datos
+    db.session.commit()
+
+    return jsonify({"success": "El usuario ha sido actualizado correctamente."}), 200
+
+# GALLERY
 @api.route('/upload', methods=['POST'])
 def upload_image_route():
     
@@ -311,6 +342,26 @@ def edit_book(book_id):
     db.session.commit()
 
     return jsonify({"success": "El libro ha sido actualizado correctamente."}), 200
+
+# ELIMINAR LIBRO
+@api.route('/deleteBook/<int:book_id>', methods=['DELETE'])
+@jwt_required()  # Solo usuarios logeados pueden borrar libros
+def delete_book(book_id):
+    
+    book = Book.query.get(book_id)
+    if not book:
+        return jsonify({"error": "Libro no encontrado"}), 404
+
+    # Verificar si el usuario autenticado es el propietario del libro
+    user_id = get_jwt_identity()
+    if book.user_id != user_id:
+        return jsonify({"error": "No tienes permisos para borrar este libro"}), 403
+
+    # Realizar la eliminación del libro
+    db.session.delete(book)
+    db.session.commit()
+
+    return jsonify({"success": "Libro eliminado exitosamente"}), 200
 
 
 ###LISTAR TODOS LOS LIBROS DISOPNIBLES
