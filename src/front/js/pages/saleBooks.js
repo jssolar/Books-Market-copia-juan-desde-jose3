@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/saleBooks.css";
+import "../../styles/saleBooks";
 
 export const SaleBooks = () => {
   const { store, actions } = useContext(Context);
